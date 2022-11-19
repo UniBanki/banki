@@ -26,7 +26,12 @@
             margin-right: 35%;
             margin-top: 15%;
             margin-bottom: 15%;
-            align-content: center;
+            padding-bottom: 4%;
+            justify-content: center;
+            display: grid;
+            border-radius: 5%;
+            border-color: #ffe571;
+            border-style: solid;
         }
         .headline-text{
             flex:1;
@@ -38,7 +43,26 @@
         }
         .input-field{
             font-size: 15pt;
+            width: 100%;
+            font-family: 'Quicksand';
         }
+        .login-button{
+            display:inline-block;
+            margin:15px;
+            text-decoration:none;
+            font-family: 'Quicksand';
+            font-size:17px;
+            border:10px #fcf9ec00;
+            border-radius:5px;
+            color:#000000;
+            background-color:#f7e9ab;
+            padding:5px 7px;
+        }
+        .login-button:hover{
+            color:#fff;
+	        background-color:#f5d02f;
+        }
+        
     </style>
 </head>
 <body>
@@ -48,9 +72,9 @@
                 <label class="label-login" for="benutzername">Benutzername</label><br />
                 <input class="input-field" type="text" id="username" name="username"><br />
                 <label class="label-login" for="kennwort">Kennwort</label><br />
-                <input type="text" id="password" name="password"><br />
-                <button onclick="login(username.value, password.value)">Login</button>
-                <button onclick="register(username.value,password.value)">Register</button>
+                <input class="input-field" type="text" id="password" name="password"><br />
+                <button class="login-button" onclick="login(username.value, password.value)">Login</button>
+                <button class="login-button" onclick="register(username.value,password.value)">Register</button>
             </div>
     </div>
 </body>
