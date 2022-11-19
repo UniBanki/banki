@@ -27,11 +27,14 @@
             margin-top: 15%;
             margin-bottom: 15%;
             padding-bottom: 4%;
-            justify-content: center;
+            justify-content:center;
             display: grid;
             border-radius: 5%;
             border-color: #ffe571;
             border-style: solid;
+            max-width:200%; 
+            max-height:200%;
+            overflow: hidden;
         }
         .headline-text{
             flex:1;
@@ -40,15 +43,17 @@
         }
         .label-login{
             font-size: larger;
+            font-size: 17pt;
+            width: 110%;
         }
         .input-field{
-            font-size: 15pt;
-            width: 100%;
+            font-size: 17pt;
             font-family: 'Quicksand';
+            width: 100%;
         }
         .login-button{
             display:inline-block;
-            margin:15px;
+            margin:12px;
             text-decoration:none;
             font-family: 'Quicksand';
             font-size:17px;
@@ -62,7 +67,14 @@
             color:#fff;
 	        background-color:#f5d02f;
         }
-        
+        .login-left{
+            padding-left: 10%;
+            padding-right: 10%;
+        }
+        .register-right{
+            padding-left: 5%;
+            padding-right: 5%;
+        }
     </style>
 </head>
 <body>
@@ -73,8 +85,8 @@
                 <input class="input-field" type="text" id="username" name="username"><br />
                 <label class="label-login" for="kennwort">Kennwort</label><br />
                 <input class="input-field" type="text" id="password" name="password"><br />
-                <button class="login-button" onclick="login(username.value, password.value)">Login</button>
-                <button class="login-button" onclick="register(username.value,password.value)">Register</button>
+                <button class="login-button login-left" onclick="login(username.value, password.value)">Login</button>
+                <button class="login-button register-right" onclick="register(username.value,password.value)">Register</button>
             </div>
     </div>
 </body>
