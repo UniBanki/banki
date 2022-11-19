@@ -11,7 +11,7 @@ function register(username, password){
 
     const user = {username:username, password:password};
 
-    fetch('https://h2992036.stratoserver.net/login.php', {
+    fetch('https://h2992036.stratoserver.net/register.php', {
         method: 'POST',
         mode:'cors',
         cache:'no-cache',
@@ -22,7 +22,7 @@ function register(username, password){
     })
         .then((response)=> response.json())
         .then((user)=>{
-            console.log('Succes:', user);
+            console.log('Success:', user);
         })
         .catch((error)=>{
             console.error('Error:',error);
