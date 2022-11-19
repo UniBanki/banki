@@ -1,16 +1,57 @@
 <!DOCTYPE html>
 <html lang="DE">
 <head>
-    <title>Login</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script type="text/javascript" src="login.js?version=<?= time() ?>>"></script>
+    <title>Login</title>
+    <style>
+        body{
+            font-family: 'Quicksand', sans-serif;
+            background-color: #fcf9ec;
+        }
+        .log-container{
+            background-color: #ffffff;
+            align-items: center;
+            margin-left: 35%;
+            margin-right: 35%;
+            margin-top: 15%;
+            margin-bottom: 15%;
+            align-content: center;
+        }
+        .headline-text{
+            flex:1;
+            text-align: center;
+            font-weight: normal;
+        }
+        .label-login{
+            font-size: larger;
+        }
+        .input-field{
+            font-size: 15pt;
+        }
+    </style>
 </head>
 <body>
-<input type="text" id="username" name="username">
-<input type="text" id="password" name="password">
-<button onclick="login(username.value, password.value)">Login</button>
-<button onclick="register(username.value,password.value)">Register</button>
+    <div class="log-container">
+        <h1 class="headline-text">Login</h1>
+            <div>
+                <label class="label-login" for="benutzername">Benutzername</label><br />
+                <input class="input-field" type="text" id="username" name="username"><br />
+                <label class="label-login" for="kennwort">Kennwort</label><br />
+                <input type="text" id="password" name="password"><br />
+                <button onclick="login(username.value, password.value)">Login</button>
+                <button onclick="register(username.value,password.value)">Register</button>
+            </div>
+    </div>
 </body>
 </html>
