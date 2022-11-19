@@ -9,7 +9,7 @@ function register(username, password){
     console.log("register");
     console.log(username, password);
 
-    const user = {username:username, password:password};
+    const user = {"username":"username", "password":"password"};
 
     fetch('https://h2992036.stratoserver.net/register.php', {
         method: 'POST',
@@ -22,7 +22,7 @@ function register(username, password){
     })
         .then((response)=> response.json())
         .then((user)=>{
-            console.log('Success:', user);
+            console.log('Succes:', user);
         })
         .catch((error)=>{
             console.error('Error:',error);
