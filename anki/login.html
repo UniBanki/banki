@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <script type="text/javascript" src="login.js?version=<?= time() ?>>"></script>
     <title>Login</title>
     <style>
@@ -18,6 +19,7 @@
             width: 320px;
             zoom: 1;
             width: device-width;
+            transform: scale(1.4);
         }
         body{
             font-family: 'Quicksand', sans-serif;
@@ -28,7 +30,7 @@
             align-items: center;
             margin-left: 35%;
             margin-right: 35%;
-            margin-top: 15%;
+            margin-top: 13%;
             margin-bottom: 15%;
             padding-bottom: 4%;
             justify-content:center;
@@ -80,19 +82,55 @@
             padding-left: 5%;
             padding-right: 5%;
         }
+        .navbar{
+            width: 100%;
+            overflow: auto;
+            display:flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 48;
+            font-size: 220%;
+            color: #000000;
+        }
+        .material-symbols-outlined:hover{
+            color: #f5d12fab;
+        }
+        .navbar a{
+            padding-left: 15%;
+            padding-top: 1%;
+        }
+        .navbar-container{
+           
+        }
     </style>
 </head>
 <body>
-    <div class="log-container">
-        <h1 class="headline-text">Login</h1>
-            <div>
-                <label class="label-login" for="benutzername">Benutzername</label><br />
-                <input class="input-field" type="text" id="username" name="username"><br />
-                <label class="label-login" for="kennwort">Kennwort</label><br />
-                <input class="input-field" type="text" id="password" name="password"><br />
-                <button class="login-button login-left" onclick="login(username.value, password.value)">Login</button>
-                <button class="login-button register-right" onclick="register(username.value,password.value)">Register</button>
+    <div>
+        <div class="navbar-container">
+             <div class="navbar">
+                <a href="#"><i class="material-symbols-outlined">home</i></a> 
+                <!--<div>
+                    <a class="name-style" >Banki</a>
+                </div>-->
             </div>
+        </div>
+         <div class="log-container">
+            <h1 class="headline-text">Login</h1>
+                 <div>
+                    <label class="label-login" for="benutzername">Benutzername</label><br />
+                    <input class="input-field" type="text" id="username" name="username"><br />
+                    <label class="label-login" for="kennwort">Kennwort</label><br />
+                    <input class="input-field" type="text" id="password" name="password"><br />
+                    <button class="login-button login-left" onclick="login(username.value, password.value)">Login</button>
+                    <button class="login-button register-right" onclick="register(username.value,password.value)">Register</button>
+                </div>
+        </div>
     </div>
 </body>
 </html>
