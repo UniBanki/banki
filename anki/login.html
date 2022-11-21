@@ -5,28 +5,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <script type="text/javascript" src="login.js?version=<?= time() ?>>"></script>
     <title>Login</title>
     <style>
         body{
             font-family: 'Quicksand', sans-serif;
             background-color: #fcf9ec;
+            padding: 0;
+            margin:0;
         }
+
         .log-container{
+            min-width:max-content;
             background-color: #ffffff;
             align-items: center;
-            margin-left: 35%;
-            margin-right: 35%;
-            margin-top: 15%;
-            margin-bottom: 15%;
-            align-content: center;
+            margin-top: 8%;
+            padding-bottom: 4%;
+            justify-content:center;
+            display: grid;
+            border-radius: 5%;
+            border-color: #ffe571;
+            border-style: solid;
+            overflow: auto;
+            box-shadow: rgba(134, 120, 75, 0.2) 0px 7px 29px 0px;
         }
         .headline-text{
             flex:1;
@@ -35,23 +43,106 @@
         }
         .label-login{
             font-size: larger;
+            font-size: 17pt;
+            width: 110%;
         }
         .input-field{
-            font-size: 15pt;
+            font-size: 17pt;
+            font-family: 'Quicksand';
+            width: 100%;
+            padding-left: 5px;
+            padding-right: 5px;
+            margin-left: 5px;
+            margin-right: 5px;
         }
+        .login-button{
+            display:inline-block;
+            margin:12px;
+            text-decoration:none;
+            font-family: 'Quicksand';
+            font-size:17px;
+            border:10px #fcf9ec00;
+            border-radius:5px;
+            color:#000000;
+            background-color:#f7e9ab;
+            padding:5px 7px;
+        }
+        .login-button:hover{
+            color:#fff;
+	        background-color:#f5d02f;
+        }
+        .login-left{
+            padding-left: 10%;
+            padding-right: 10%;
+        }
+        .register-right{
+            padding-left: 5%;
+            padding-right: 5%;
+        }
+        .navbar{
+            width: 100%;
+            overflow: auto;
+            flex-direction: row;
+        }
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 48;
+            font-size: 220%;
+            color: #000000;
+        }
+        .material-symbols-outlined:hover{
+            color: #f5d12fab;
+        }
+        .navbar a{
+            padding-left: 15%;
+            padding-top: 1%;
+        }
+        .center-style{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .header-style{
+            text-decoration: none;
+            padding-top: 40px;
+            margin-top: 10px;
+            font-size: 35pt;
+            color: #000000;
+        }
+        .header-style:hover{
+            text-decoration: underline;
+            color: #f5d02f;
+        }
+        .flex-style{
+            overflow: auto;
+        }
+        .flex-style > * {
+            flex: 1 1;
+        }
+        
     </style>
 </head>
 <body>
-    <div class="log-container">
-        <h1 class="headline-text">Login</h1>
-            <div>
-                <label class="label-login" for="benutzername">Benutzername</label><br />
-                <input class="input-field" type="text" id="username" name="username"><br />
-                <label class="label-login" for="kennwort">Kennwort</label><br />
-                <input type="text" id="password" name="password"><br />
-                <button onclick="login(username.value, password.value)">Login</button>
-                <button onclick="register(username.value,password.value)">Register</button>
-            </div>
+    <header>
+        <a class="center-style header-style" href="/">Banki</a>
+    </header>
+    <div class="flex-style center-style">
+        <div></div>
+         <div class="log-container">
+            <h1 class="headline-text">Login</h1>
+                 <div>
+                    <label class="label-login" for="benutzername">Benutzername</label><br />
+                    <input class="input-field" type="text" id="username" name="username"><br />
+                    <label class="label-login" for="kennwort">Kennwort</label><br />
+                    <input class="input-field" type="text" id="password" name="password"><br />
+                    <button class="login-button login-left" onclick="login(username.value, password.value)">Login</button>
+                    <button class="login-button register-right" onclick="register(username.value,password.value)">Register</button>
+                </div>
+        </div>
+        <div></div>
     </div>
 </body>
 </html>
