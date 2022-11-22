@@ -1,0 +1,107 @@
+body{
+    font-family: 'Quicksand', sans-serif;
+    background-color: #fcf9ec;
+    padding: 0;
+    margin:0;
+}
+
+.log-container{
+    min-width:max-content;
+    background-color: #ffffff;
+    align-items: center;
+    margin-top: 8%;
+    padding-bottom: 4%;
+    justify-content:center;
+    display: grid;
+    border-radius: 5%;
+    border-color: #ffe571;
+    border-style: solid;
+    overflow: auto;
+    box-shadow: rgba(134, 120, 75, 0.2) 0px 7px 29px 0px;
+}
+.headline-text{
+    flex:1;
+    text-align: center;
+    font-weight: normal;
+}
+.label-login{
+    font-size: larger;
+    font-size: 17pt;
+    width: 110%;
+}
+.input-field{
+    font-size: 17pt;
+    font-family: 'Quicksand';
+    width: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.login-button{
+    display:inline-block;
+    margin:12px;
+    text-decoration:none;
+    font-family: 'Quicksand';
+    font-size:17px;
+    border:10px #fcf9ec00;
+    border-radius:5px;
+    color:#000000;
+    background-color:#f7e9ab;
+    padding:5px 7px;
+}
+.login-button:hover{
+    color:#ffffff;
+    background-color:#f5d02f;
+}
+.login-left{
+    padding-left: 10%;
+    padding-right: 10%;
+}
+.register-right{
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.navbar{
+    width: 100%;
+    overflow: auto;
+    flex-direction: row;
+}
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48;
+    font-size: 220%;
+    color: #000000;
+}
+.material-symbols-outlined:hover{
+    color: #f5d12fab;
+}
+.navbar a{
+    padding-left: 15%;
+    padding-top: 1%;
+}
+.center-style{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.header-style{
+    text-decoration: none;
+    padding-top: 40px;
+    margin-top: 10px;
+    font-size: 35pt;
+    color: #000000;
+}
+.header-style:hover{
+    text-decoration: underline;
+    color: #f5d02f;
+}
+.flex-style{
+    overflow: auto;
+}
+.flex-style > * {
+    flex: 1 1;
+}
