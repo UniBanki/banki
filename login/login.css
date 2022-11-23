@@ -9,7 +9,7 @@ body{
     min-width:max-content;
     background-color: #ffffff;
     align-items: center;
-    margin-top: 8%;
+    margin-top: 6%;
     padding-bottom: 4%;
     justify-content:center;
     flex-wrap: nowrap;
@@ -26,7 +26,6 @@ body{
     font-weight: normal;
 }
 .label-login{
-    font-size: larger;
     font-size: 17pt;
     width: 110%;
 }
@@ -63,27 +62,6 @@ body{
     padding-left: 5%;
     padding-right: 5%;
 }
-.navbar{
-    width: 100%;
-    overflow: auto;
-    flex-direction: row;
-}
-.material-symbols-outlined {
-    font-variation-settings:
-    'FILL' 0,
-    'wght' 400,
-    'GRAD' 0,
-    'opsz' 48;
-    font-size: 220%;
-    color: #000000;
-}
-.material-symbols-outlined:hover{
-    color: #f5d12fab;
-}
-.navbar a{
-    padding-left: 15%;
-    padding-top: 1%;
-}
 .center-style{
     display: flex;
     align-items: center;
@@ -102,8 +80,13 @@ body{
 }
 .flex-style{
     overflow: hidden;
+    margin: 0;
+    padding: 0;
+    justify-content: flex-start;
+    align-content: flex-start;
+    flex: 1 1 auto;
 }
 .flex-style > * {
-    flex: 1 1;
+    flex: 1 1 auto;
 }
 
