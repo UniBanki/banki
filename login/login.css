@@ -6,7 +6,8 @@ body{
 }
 
 .log-container{
-    min-width:max-content;
+    min-width:372px;
+    max-width: 450px;
     background-color: #ffffff;
     align-items: center;
     margin-top: 6%;
