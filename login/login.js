@@ -1,3 +1,13 @@
+function bodyload(){
+    document.body.addEventListener("keypress", function(event) {
+        // If the user presses the "Enter" key on the keyboard
+        if (event.key === "Enter") {
+          // Cancel the default action, if needed
+          document.getElementById("login").click();
+        
+      };
+})}
+
 function getCookie(cookieName) {//ignores attributes from cookies, returns only the value
     let cookie = {};
     document.cookie.split(';').forEach(function (el) {

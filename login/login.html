@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="login.css">
     <title>Login</title>
 </head>
-<body>
+<body onload="bodyload()">
     <header>
         <a class="center-style header-style" href="/">Banki</a>
     </header>
@@ -24,7 +24,6 @@
         <div></div>
         <div></div>
          <div class="log-container flex-log">
-           <form id="form">
             <h1 class="headline-text">Login</h1>
                  <div>
                     <label class="label-login" for="benutzername">Benutzername</label><br />
@@ -37,7 +36,6 @@
                     <button class="login-button register-right" id="register" onclick="register(username.value,password.value)">Register</button>
                 </div>
                 <div id="message-container"></div>
-            </form>
         </div>
         <div></div>
         <div></div>
