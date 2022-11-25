@@ -55,14 +55,6 @@ function login(username, password) {
 
 }
 
-function handelEnter(e){
-    if (e.keyCode === 13){
-        var username =$('#username').val()
-        var password =$('#password').val()
-        login(username,password)
-    }
-}
-
 function register(username, password) {
     const user = {"username": username, "password": password};
 
