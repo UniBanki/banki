@@ -24,6 +24,7 @@
         <div></div>
         <div></div>
          <div class="log-container flex-log">
+           <form id="form">
             <h1 class="headline-text">Login</h1>
                  <div>
                     <label class="label-login" for="benutzername">Benutzername</label><br />
@@ -32,9 +33,11 @@
                 <div>
                     <label class="label-login" for="kennwort">Kennwort</label><br />
                     <input class="input-field" type="password" minlength="5" maxlength="20" id="password" name="password"><br />
-                    <button class="login-button login-left" onclick="login(username.value, password.value)">Login</button>
-                    <button class="login-button register-right" onclick="register(username.value,password.value)">Register</button>
+                    <button class="login-button login-left" id="login" onclick="login(username.value, password.value)">Login</button>
+                    <button class="login-button register-right" id="register" onclick="register(username.value,password.value)">Register</button>
                 </div>
+                <div id="message-container"></div>
+            </form>
         </div>
         <div></div>
         <div></div>
