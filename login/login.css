@@ -69,6 +69,8 @@ body{
     justify-content: center;
 }
 .header-style{
+    text-align: center;
+    overflow: hidden;
     text-decoration: none;
     padding-top: 40px;
     margin-top: 10px;
