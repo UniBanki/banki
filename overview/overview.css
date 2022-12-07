@@ -1,12 +1,37 @@
 body{
-    background-color: hsl(50, 80%, 73%);
+    font-family: 'Quicksand', sans-serif;
+    background-color: #fcf9ec;
+    padding: 0;
+    margin:0;
+}
+
+.center-style{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.overview-container{
+    border-radius: 2%;
+    border-color: #ffe571;
+    border-style: solid;
+    overflow: hidden;
+    box-shadow: rgba(134, 120, 75, 0.2) 0px 7px 29px 0px;
+    top: 50%;
+    left: 30%;
+    width: 60em;
+    height: 18em;
+    margin-top: -9em;
+    margin-left: -15em;
+    background-color: #ffffff;
+    position: fixed;
 }
 
 button{
+    font-family: 'Quicksand', sans-serif;
     display:inline-block;
     margin:12px;
     text-decoration:none;
-    font-family: 'Quicksand';
     font-size:17px;
     border:10px #fcf9ec00;
     border-radius:5px;
@@ -15,20 +40,20 @@ button{
     padding:5px 7px;
 }
 
+button:hover{
+    color:#ffffff;
+    background-color:#f5d02f;
+}
 
-#overview {
-    top: 50%;
-    left: 30%;
-    width: 60em;
-    height: 18em;
-    margin-top: -9em;
-    margin-left: -15em;
-    border: 1px solid #666;
-    
-    position: fixed;
+.header-style{
+    text-decoration: none;
+    padding-top: 40px;
+    margin-top: 10px;
+    font-size: 35pt;
+    color: #000000;
 }
 
 .stack{
-    border: 1px solid #666;
-    background-color: hsl(226, 38%, 42%);
+    border: 1px solid #ffe571;
+    background-color: #f9f7f1;
 }
