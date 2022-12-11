@@ -19,8 +19,7 @@ body{
     box-shadow: rgba(134, 120, 75, 0.2) 0px 7px 29px 0px;
     top: 50%;
     left: 30%;
-    width: 60em;
-    height: 18em;
+    width: 71em;
     margin-top: -9em;
     margin-left: -15em;
     background-color: #ffffff;
@@ -53,6 +52,10 @@ button:hover{
     color: #000000;
 }
 
+.header-style:hover{
+    text-decoration: underline;
+    color: #f5d02f;
+}
 .stack{
     border: 1px solid #ffe571;
     background-color: #f9f7f1;

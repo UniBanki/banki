@@ -10,7 +10,7 @@ function createStack() {
   const newstack = `
     <div class="stack">
         <button onclick="expandStack()">Expand</button>
-        <label>${stackname}</label>
+        <label id="stackName">${stackname}</label>
         <button onclick="createCard()">create cards</button>
         <button onclick="renameStack()">rename</button>
         <button onclick="deleteStack()">delete</button>
@@ -28,8 +28,10 @@ function createCard(){
 
 }
 
-function renamestack(){
-    
+function renameStack(){
+    const stackrename = prompt("New name of stack:");
+
+    document.getElementById("stackName").innerHTML = stackrename;
 }
 
 function deleteStack(){
