@@ -20,6 +20,7 @@ body{
     top: 50%;
     left: 30%;
     width: 71em;
+    min-width: 20em; 
     margin-top: -9em;
     margin-left: -15em;
     background-color: #ffffff;
