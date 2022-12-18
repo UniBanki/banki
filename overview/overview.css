@@ -98,3 +98,47 @@ button:hover{
     border: 1px solid #ffe571;
     background-color: #f9f7f1;
 }
+
+@media screen and (max-width: 500px) {
+    .header a {
+      display: block;
+      margin: 1%;
+    }
+    .center-style{
+        margin-top: -3%;
+    }
+
+    .header-right {
+      float: none;
+      display: flex;
+      justify-content: center;
+      
+    }
+
+    .overview-container{
+        width: 24em;
+        margin-left: -7em;
+        margin-top: -13em;
+    }
+}
+
+@media screen and (max-width: 395px) {
+    .overview-container{
+        width: 23em;
+        margin-left: -6.8em;
+        margin-top: -13em;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .overview-container{
+        width: 47em;
+        margin-left: -14em;
+        margin-top: -17em;
+    }
+
+    .header-right{
+        margin-top: -3%;
+    }
+}
+
