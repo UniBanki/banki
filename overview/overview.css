@@ -20,10 +20,9 @@ body{
     box-shadow: rgba(134, 120, 75, 0.2) 0px 7px 29px 0px;
     top: 50%;
     left: 30%;
-    width: 71em;
-    min-width: 20em; 
+    width: 90em;
     margin-top: -9em;
-    margin-left: -15em;
+    margin-left: -20em;
     background-color: #ffffff;
     position: fixed;
 }
@@ -73,7 +72,7 @@ button:hover{
     float: left;
     color: black;
     text-align: center;
-    padding: 15px;
+    padding: 25px;
     text-decoration: none;
     font-size: 18px;
     line-height: 25px;
@@ -84,6 +83,12 @@ button:hover{
 .header a:hover{
     text-decoration: underline;
 }
+
+.header a.active:hover {
+    background-color: #f7e285f9;
+
+    color: white;
+  }
 
 .header a.header-style:hover{
     text-decoration: underline;
@@ -130,15 +135,4 @@ button:hover{
     }
 }
 
-@media screen and (max-width: 850px) {
-    .overview-container{
-        width: 47em;
-        margin-left: -14em;
-        margin-top: -17em;
-    }
-
-    .header-right{
-        margin-top: -3%;
-    }
-}
 
