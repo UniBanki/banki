@@ -10,14 +10,13 @@ function createStack() {
   if(stackname){
   const newstack = `
     <div id="newStack" class="stack">
-        <button onclick="expandStack()">Expand</button>
+        <button onclick="expandStack()">Übersicht</button>
         <label id="stackName">${stackname}</label>
-        <button onclick="createCard()">create cards</button>
-        <button onclick="renameStack()">rename</button>
-        <button onclick="deleteStack(this)">delete</button>
+        <button onclick="createCard()">Hinzufügen</button>
+        <button onclick="renameStack()">Umbenennen</button>
+        <button onclick="deleteStack(this)">Löschen</button>
     </div>
     `;
-
     document.getElementById("stacks").innerHTML = newstack+innerstacks;}
 }
 
@@ -26,7 +25,7 @@ function expandStack(){
 }
 
 function createCard(){
-
+  window.open('../karten/createcard.html','_self');
 }
 
 function renameStack(){
