@@ -20,12 +20,12 @@ function getCookie(cookieName) {//ignores attributes from cookies, returns only 
 
 function login(username, password) {
     const old_sessionid = getCookie("sessionid");
-    const user = {"username": username, "password": password, "sessionid": old_sessionid};
+    const user = {"method":"login","body":{"username": username, "password": password, "sessionid": old_sessionid}};
     let loggedin = false;
     let error = null;
 
-    fetch('https://h2992036.stratoserver.net/banki/login.php', {
-        method: 'POST', mode: 'cors', cache: 'no-cache', headers: {
+    fetch('https://d.techtrap.net/banki-frontend/banki.php', {
+        method: 'POST', cache: 'no-cache', headers: {
             'Content-Type': 'application/json',
         }, body: JSON.stringify(user),
     })
