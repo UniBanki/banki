@@ -8,7 +8,7 @@ function bodyload(){
       };
 })}
 
-function getCookie(cookieName) {//ignores attributes from cookies, returns only the value
+function getCookie(cookieName) {//ignores attributes from cookies, returns only the values
     let cookie = {};
     document.cookie.split(';').forEach(function (el) {
         let [key, value] = el.split('=');
