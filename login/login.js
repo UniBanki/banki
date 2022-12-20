@@ -19,6 +19,7 @@ function getCookie(cookieName) {//ignores attributes from cookies, returns only 
 
 
 function login(username, password) {
+    
     const old_sessionid = getCookie("sessionid");
     const user = {"username": username, "password": password, "sessionid": old_sessionid};
     let loggedin = false;
