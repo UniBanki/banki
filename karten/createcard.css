@@ -69,13 +69,25 @@ button:hover{
     float: right;
 }
 
-.edit-container{
+.main-container{
     border-radius: 5%;
     border-color: #ffe571;
     border-style: solid;
     overflow: hidden;
     box-shadow: rgba(134, 120, 75, 0.2) 0px 7px 29px 0px;
-    background-color: #ffffff;
+    width: 10%;
+    padding: 15%;
+    background-color: #fefefe;
 }
 
+.edit-container{
+    border-radius: 5%;
+    border-color: #ffe571;
+    border-style: solid;
+    overflow: hidden;
+    padding: 10%;
+    width: 150px;
+    background-color: #ffffff;
+    position: relative;
+}
 
