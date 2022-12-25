@@ -76,7 +76,7 @@ button:hover{
     overflow: hidden;
     box-shadow: rgba(134, 120, 75, 0.2) 0px 7px 29px 0px;
     width: 10%;
-    padding: 15%;
+    padding: 13%;
     background-color: #fefefe;
 }
 
@@ -85,9 +85,12 @@ button:hover{
     border-color: #ffe571;
     border-style: solid;
     overflow: hidden;
-    padding: 10%;
     width: 150px;
     background-color: #ffffff;
     position: relative;
 }
 
+.textarea-container{
+    border-color: transparent;
+    resize: none;
+}
