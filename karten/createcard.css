@@ -70,27 +70,37 @@ button:hover{
 }
 
 .main-container{
+    display: block;
     border-radius: 5%;
     border-color: #ffe571;
     border-style: solid;
     overflow: hidden;
     box-shadow: rgba(134, 120, 75, 0.2) 0px 7px 29px 0px;
-    width: 10%;
-    padding: 13%;
+    width: 172px;
+    padding-top: 3em;
+    padding-left: 16em;
+    padding-right: 16em;
+    padding-bottom:1em;
     background-color: #fefefe;
 }
 
 .edit-container{
-    border-radius: 5%;
+    border: solid;
     border-color: #ffe571;
+    resize: none;
     border-style: solid;
     overflow: hidden;
-    width: 150px;
+    width: 602px;
+    height: 52px;
     background-color: #ffffff;
     position: relative;
+    margin-left:-13em;
+    padding: 0%;
+    margin-top: 1em;
+    font-size: 12pt;
+    font-family:'Quicksand', sans-serif;
 }
 
-.textarea-container{
-    border-color: transparent;
-    resize: none;
+.answer-container{
+    height: 265px;
 }

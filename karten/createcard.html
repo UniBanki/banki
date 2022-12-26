@@ -7,10 +7,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="createcard.css">
-    
+    <script type="text/javascript" src="createcard.js?version=<?= time() ?>>"></script>
+
     <title>Karten erstellen</title>
 </head>
-<body>
+<body onload="screenSize()">
     <div class="header">
         <div class="center-style">
         <a href="/" class="header-style">Banki</a></div>
@@ -25,16 +26,12 @@
         <div class="main-container">
             <div class="edit-container">
             </div>
-            <div class="edit-container">
-                <textarea class="textarea-container">
+            <textarea class="edit-container">
 
-                </textarea>
-            </div>
-            <div class="edit-container">
-                <textarea class="textarea-container">
+            </textarea>
+            <textarea class="edit-container answer-container">
 
-                </textarea>
-            </div>
+            </textarea>
             <div class="center-style">
             <button>Hinzufügen</button></div>
         </div>
