@@ -2,6 +2,26 @@ function checkLogin(){
 
 }
 
+function screenSize(){
+  console.info(`${ screen.width } × ${ screen.height }`);
+  const header = document.getElementById("headerRight");
+  const overviewCont = document.getElementById("overview");
+  const headerCenter = document.getElementById("headerCenter");
+
+  if(screen.width >= 375 && screen.width <= 414){
+    overviewCont.style.cssText += "margin-left: -6em; margin-top: -7em; width: 21em;";
+    header.style.cssText += "float:none; display:flex; justify-content: center;";
+  }
+  else if (screen.width >= 415 && screen.width <=540){
+    overviewCont.style.cssText += "margin-left: -9em; margin-top: -7em; width: 31em;";
+    header.style.cssText += "float:none; display:flex; justify-content: center; margin-top:1em;";
+  }
+  else if (screen.width >= 768 && screen.width<= 820){
+    overviewCont.style.cssText += "margin-left: -13em; margin-top: -14em; width: 44em;";
+    header.style.cssText += "margin: -3em;";
+  }
+}
+
 function createStack() {
   const innerstacks = document.getElementById("stacks").innerHTML;
 
