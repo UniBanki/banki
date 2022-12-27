@@ -1,0 +1,135 @@
+body{
+    font-family: 'Quicksand', sans-serif;
+    background-color: #fcf9ec;
+    padding: 0;
+    margin:0;
+}
+
+.center-style{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1%;
+}
+
+.overview-container{
+    border-radius: 2%;
+    border-color: #ffe571;
+    border-style: solid;
+    overflow: hidden;
+    box-shadow: rgba(134, 120, 75, 0.2) 0px 7px 29px 0px;
+    top: 50%;
+    left: 30%;
+    width: 78em;
+    margin-top: -9em;
+    margin-left: -20em;
+    background-color: #ffffff;
+    position: fixed;
+}
+
+button{
+    font-family: 'Quicksand', sans-serif;
+    display:inline-block;
+    margin:12px;
+    text-decoration:none;
+    font-size:17px;
+    border:10px #fcf9ec00;
+    border-radius:5px;
+    color:#000000;
+    background-color:#f7e9ab;
+    padding:5px 7px;
+}
+
+button:hover{
+    color:#ffffff;
+    background-color:#f5d02f;
+}
+
+.button-exit{
+    display: flex;
+    justify-items: right;
+    align-items: center;
+    top: 15px;
+    float:right;
+    margin-right: 5%;
+    margin-top: -4%;
+}
+.header {
+    overflow: hidden;
+    display: block;
+    padding: 20px 10px;
+}
+
+.header a.header-style{
+    text-decoration: none;
+    padding-top: 40px;
+    margin-top: 10px;
+    font-size: 35pt;
+    color: #000000;
+}
+
+.header a {
+    float: left;
+    color: black;
+    text-align: center;
+    padding: 25px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 25px;
+    border-radius: 4px;
+    margin: -3%;
+}
+
+.header a:hover{
+    text-decoration: underline;
+}
+
+.header a.active:hover {
+    background-color: #f7e285f9;
+    color: white;
+  }
+
+.header a.header-style:hover{
+    text-decoration: underline;
+    color: #f5d02f;
+}
+
+.header-right {
+    float: right;
+}
+
+.stack{
+    border: 1px solid #ffe571;
+    background-color: #f9f7f1;
+}
+
+@media screen and (max-width: 500px) {
+    .header a {
+      display: block;
+      margin: 1%;
+    }
+    .center-style{
+        margin-top: -3%;
+    }
+
+    .header-right {
+      float: none;
+      display: flex;
+      justify-content: center;
+      
+    }
+
+    .overview-container{
+        width: 24em;
+        margin-left: -7em;
+        margin-top: -13em;
+    }
+}
+
+@media screen and (max-width: 395px) {
+    .overview-container{
+        width: 23em;
+        margin-left: -6.8em;
+        margin-top: -13em;
+    }
+}
