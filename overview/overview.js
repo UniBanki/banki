@@ -1,47 +1,144 @@
-function checkLogin(){
+function onLoad() {
+    getStacks()
+        .then(function (stacks) {
+            stacks.forEach(function (stack) {
+                let stackid = encodeURIComponent(stack.stackname);
+
+                insertStack(stackid, stack.stackname);
+            })
+        })
+        .catch(err => createModal(null, 'err', err.message, [null]))
+}
+
+function getCookie(cookieName) {//ignores attributes from cookies, returns only the values
+    let cookie = {};
+    document.cookie.split(';').forEach(function (el) {
+        let [key, value] = el.split('=');
+        cookie[key.trim()] = value;
+    })
+    return cookie[cookieName];
+}
+
+function insertStack(stackid, stackname) {
+    const newstack = `
+                    <div id="${stackid}" class="stack">
+                        <button onclick="expandStack()">Übersicht</button>
+                        <label>${stackname}</label>
+                        <button onclick="">Hinzufügen</button>
+                        <button onclick="createModal('${stackid}', 'str', 'Neuen Stapelnamen eingeben:', [renameStack, 'undefined'])">Umbenennen</button>
+                        <button onclick="createModal('${stackid}', 'yn', 'Sicher, dass du den Stapel löschen möchtest?', [deleteStack, 'undefined'])">Löschen</button>
+                    </div>
+                    `;
+    const innerstacks = document.getElementById("stacks").innerHTML;
+    document.getElementById("stacks").innerHTML = newstack + innerstacks;
+}
+
+function createStack(stackname) {
+
+
+    const options = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: '{"sessionid":"' + getCookie('sessionid') + '","stackname":"' + stackname + '"}'
+    };
+
+    fetch('https://techtrap.net/api/Stacks/create', options)
+        .then(response => response.json())
+        .then(function (response) {
+            if (response.err) {
+                createModal(null, 'err', response.err, [null]);
+            } else {
+                let stackid = encodeURIComponent(stackname);
+                if (stackname) {
+                    insertStack(stackid, stackname);
+                }
+            }
+        })
+        .catch(err => createModal(null, 'err', err.message, [null]));
+
+
 
 }
 
-function createStack() {
-  const innerstacks = document.getElementById("stacks").innerHTML;
-
-  const stackname = prompt("Name of new stack:");
-
-  if(stackname){
-  const newstack = `
-    <div id="newStack" class="stack">
-        <button onclick="expandStack()">Übersicht</button>
-        <label id="stackName">${stackname}</label>
-        <button onclick="createCard()">Hinzufügen</button>
-        <button onclick="renameStack()">Umbenennen</button>
-        <button onclick="deleteStack(this)">Löschen</button>
-    </div>
-    `;
-    document.getElementById("stacks").innerHTML = newstack+innerstacks;}
+function expandStack() {
 }
 
-function expandStack(){
+function createCard() {
+    window.open('../karten/createcard.html', '_self');
+}
+
+function renameStack(newstackname, stackid) {
+
+    const oldStackname = document.getElementById(stackid).getElementsByTagName("label")[0].innerHTML;
+
+    const options = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: '{"sessionid":"' + getCookie('sessionid') + '","oldStackname":"' + oldStackname + '","newStackname":"' + newstackname + '"}'
+    };
+
+    fetch('https://techtrap.net/api/Stacks/rename', options)
+        .then(response => response.json())
+        .then(function (response) {
+            if (response.err) {
+                createModal(null, 'err', response.err, [null]);
+            } else {
+                document.getElementById(stackid).getElementsByTagName("label")[0].innerHTML = newstackname;
+            }
+        })
+        .catch(err => createModal(null, 'err', err.message, [null]));
+
 
 }
 
-function createCard(){
-  window.open('../karten/createcard.html','_self');
+function deleteStack(ignore, stackid) {
+
+    const stackname = document.getElementById(stackid).getElementsByTagName("label")[0].innerText;
+
+    const options = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: '{"sessionid":"' + getCookie('sessionid') + '","stackname":"' + stackname + '"}'
+    };
+
+    fetch('https://techtrap.net/api/Stacks/delete', options)
+        .then(response => response.json())
+        .then(function (response) {
+            if (response.err) {
+                createModal(null, 'err', response.err, [null]);
+            } else {
+                document.getElementById(stackid).remove();
+            }
+        })
+        .catch(err => createModal(null, 'err', err.message, [null]));
 }
 
-function renameStack(){
-    const stackrename = prompt("New name of stack:");
+function getStacks() {
+    return new Promise(function (resolve, reject) {
+        const options = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: '{"sessionid":"' + getCookie('sessionid') + '"}'
+        };
 
-    document.getElementById("stackName").innerHTML = stackrename;
+        fetch('https://techtrap.net/api/Stacks/get', options)
+            .then(response => response.json())
+            .then(function (response) {
+                if (response.err) {
+                    reject(new Error(response.err));
+                }
+                resolve(response);
+            })
+            .catch(err => reject(err));
+    });
+
 }
 
-function deleteStack(item){
-  const stackname = document.getElementById("stackName").innerHTML;
-  if(confirm("delete "+ stackname + "?")){
-  item.parentNode.remove();
-  }
-}
-
-function exit(){
+function exit() {
 
 }
+
+
+
+
 

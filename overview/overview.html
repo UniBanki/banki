@@ -8,11 +8,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="overview.css">
-    <script type="text/javascript" src="overview.js?version=<?= time() ?>>"></script>
+    <link rel="stylesheet" href="modal.css">
+    <script type="text/javascript" src="overview.js"></script>
+    <script type="text/javascript" src="modal.js"></script>
 
     <title>Overview</title>    
 </head>
-<body onload="checkLogin()">
+<body onload="onLoad()">
     <div class="header">
         <div class="center-style">
         <a href="/" class="header-style">Banki</a></div>
@@ -24,14 +26,10 @@
     </div>
 <div class="overview-container" id="overview">
     <div>
-    <button id="btnNew" onclick="createStack()">Neuer Stapel</button></div>
+    <button id="btnNew" onclick="createModal(null, 'str', 'Wie soll der neue Stapel heißen?', [createStack])">Neuer Stapel</button></div>
     <div id="stacks" class="stacks">
         
     </div>
 </div>
 </body>
-<footer>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="overview.js"></script>
-</footer>
 </html>
