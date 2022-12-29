@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="DE">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../overview/overview.css">
+    <link rel="stylesheet" href="home.css">
+    <title>Banki - Homepage</title>
+</head>
+
+<body onload="bodyload()">
+    <div id="logo_cont">
+        <img id="logo_img" src="../res/logo.png" alt="Banki Logo">
+    </div>
+    <div class="flex-style center-style">
+        <div id="textblock">
+            <p>
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+            </p>
+            <div  style="display:flex; flex-direction: row; justify-content: center; align-items: center">
+                <p style="padding-right:10px">@karinawagner_</p>
+                <p style="padding-left:10px">@denis_kasak</p>
+            </div>
+
+            <div>
+                <button class="login-button login-left" id="to_login"
+                    onclick="login(username.value, password.value)">Zum Login</button>
+            </div>
+            <p>TODO: Wenn auf Login gedrückt wird, soll die Sessionid überprüft werden. Wenn sie existiert, dann nicht
+                an Login.html sondern an overview direkt weiterleiten</p>
+        </div>
+    </div>
+
+</body>
+
+</html>
