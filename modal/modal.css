@@ -1,0 +1,41 @@
+.modalbg {
+    /*display: none;*/ /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal {
+    min-width:372px;
+    max-width: 450px;
+    align-items: center;
+    margin-top: 6%;
+    padding-bottom: 4%;
+    justify-content:center;
+    flex-wrap: nowrap;
+    display: grid;
+    border-radius: 5%;
+    border-color: #ffe571;
+    border-style: solid;
+    overflow: hidden;
+    box-shadow: rgba(134, 120, 75, 0.2) 0px 7px 29px 0px;
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.modal-str{
+    font-size: 17pt;
+    font-family: 'Quicksand';
+    width: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
