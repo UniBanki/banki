@@ -18,7 +18,7 @@ body{
     border-style: solid;
     overflow: hidden;
     box-shadow: rgba(134, 120, 75, 0.2) 0px 7px 29px 0px;
-    top: 50%;
+    top: 45%;
     left: 30%;
     width: 78em;
     margin-top: -9em;
@@ -103,33 +103,3 @@ button:hover{
     background-color: #f9f7f1;
 }
 
-@media screen and (max-width: 500px) {
-    .header a {
-      display: block;
-      margin: 1%;
-    }
-    .center-style{
-        margin-top: -3%;
-    }
-
-    .header-right {
-      float: none;
-      display: flex;
-      justify-content: center;
-      
-    }
-
-    .overview-container{
-        width: 24em;
-        margin-left: -7em;
-        margin-top: -13em;
-    }
-}
-
-@media screen and (max-width: 395px) {
-    .overview-container{
-        width: 23em;
-        margin-left: -6.8em;
-        margin-top: -13em;
-    }
-}
