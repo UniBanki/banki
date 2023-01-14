@@ -9,15 +9,6 @@ function bodyload() {
     })
 }
 
-function getCookie(cookieName) {//ignores attributes from cookies, returns only the values
-    let cookie = {};
-    document.cookie.split(';').forEach(function (el) {
-        let [key, value] = el.split('=');
-        cookie[key.trim()] = value;
-    })
-    return cookie[cookieName];
-}
-
 
 function login(username, password) {
 
@@ -27,21 +18,14 @@ function login(username, password) {
         body: '{"username":"' + username + '","password":"' + password + '"}'
     };
 
-    fetch('/api/login', options)
+    fetch('https://h2992036.stratoserver.net/api/login', options)
         .then(response => response.json())
         .then(response => {
             if(response.err){
                 createModal(this, 'err', response.err, [])
             }else{
                 document.cookie = "sessionid=" + response.sessionid + "; path=/; SameSite=None; Secure";
-                if(window.location.pathname.match(/\/d\//)){
-                    window.open('/d/overview','_self');
-                }else if(window.location.pathname.match(/\/k\//)){
-                    window.open('/k/overview','_self');
-                }else{
-                    window.open('/overview','_self');
-                }   
-                
+                window.open('/overview/overview.html','_self');                
             }         
         })
         .catch(err => createModal(null, 'err', err.message));
@@ -54,21 +38,14 @@ function register(username, password) {
         body: '{"username":"' + username + '","password":"' + password + '"}'
     };
 
-    fetch('/api/register', options)
+    fetch('https://h2992036.stratoserver.net/api/register', options)
         .then(response => response.json())
         .then(response => {
             if(response.err){
                 createModal(this, 'err', response.err, [])
             }else{
                 document.cookie = "sessionid=" + response.sessionid + "; path=/; SameSite=None; Secure";
-                if(window.location.pathname.match(/\/d\//)){
-                    window.open('/d/overview','_self');
-                }else if(window.location.pathname.match(/\/k\//)){
-                    window.open('/k/overview','_self');
-                }else{
-                    window.open('/overview','_self');
-                }   
-                
+                window.open('/overview/overview.html','_self');
             }            
         })
         .catch(err => createModal(null, 'err', err.message));

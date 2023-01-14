@@ -42,7 +42,7 @@ function createStack(stackname) {
         body: '{"sessionid":"' + getCookie('sessionid') + '","stackname":"' + stackname + '"}'
     };
 
-    fetch('https://techtrap.net/api/Stacks/create', options)
+    fetch('https://h2992036.stratoserver.net/api/stacks/create', options)
         .then(response => response.json())
         .then(function (response) {
             if (response.err) {
@@ -77,7 +77,7 @@ function renameStack(newstackname, stackid) {
         body: '{"sessionid":"' + getCookie('sessionid') + '","oldStackname":"' + oldStackname + '","newStackname":"' + newstackname + '"}'
     };
 
-    fetch('https://techtrap.net/api/Stacks/rename', options)
+    fetch('https://h2992036.stratoserver.net/api/stacks/rename', options)
         .then(response => response.json())
         .then(function (response) {
             if (response.err) {
@@ -101,7 +101,7 @@ function deleteStack(ignore, stackid) {
         body: '{"sessionid":"' + getCookie('sessionid') + '","stackname":"' + stackname + '"}'
     };
 
-    fetch('https://techtrap.net/api/Stacks/delete', options)
+    fetch('https://h2992036.stratoserver.net/api/stacks/delete', options)
         .then(response => response.json())
         .then(function (response) {
             if (response.err) {
@@ -121,7 +121,7 @@ function getStacks() {
             body: '{"sessionid":"' + getCookie('sessionid') + '"}'
         };
 
-        fetch('https://techtrap.net/api/Stacks/get', options)
+        fetch('https://h2992036.stratoserver.net/api/stacks/getAll', options)
             .then(response => response.json())
             .then(function (response) {
                 if (response.err) {
