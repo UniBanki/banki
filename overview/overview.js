@@ -12,21 +12,14 @@ function onLoad() {
         .catch(err => createModal(null, 'err', err.message, [null]))
 }
 
-function getCookie(cookieName) {//ignores attributes from cookies, returns only the values
-    let cookie = {};
-    document.cookie.split(';').forEach(function (el) {
-        let [key, value] = el.split('=');
-        cookie[key.trim()] = value;
-    })
-    return cookie[cookieName];
-}
+
 
 function insertStack(stackid, stackname) {
     const newstack = `
                     <div id="${stackid}" class="stack">
                         <button onclick="expandStack()">Übersicht</button>
                         <label>${stackname}</label>
-                        <button onclick="createCard(${stackid})">Hinzufügen</button>
+                        <button onclick="createCard(${stackid})">Bearbeiten</button>
                         <button onclick="createModal('${stackid}', 'str', 'Neuen Stapelnamen eingeben:', [renameStack, 'undefined'])">Umbenennen</button>
                         <button onclick="createModal('${stackid}', 'yn', 'Sicher, dass du den Stapel löschen möchtest?', [deleteStack, 'undefined'])">Löschen</button>
                     </div>
@@ -139,6 +132,10 @@ function exit() {
 
 }
 
+function logout(){
+    setCookie("sessionid", "");
+    window.open('/login/login.html','_self');
+}
 
 
 

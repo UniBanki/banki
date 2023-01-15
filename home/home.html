@@ -5,12 +5,14 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../overview/overview.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="home.css">
+    <script type="text/javascript" src="/lib/util.js"></script>
+    <script type="text/javascript" src="home.js"></script>
     <title>Banki - Homepage</title>
 </head>
 
-<body onload="bodyload()">
+<body>
     <div id="logo_cont">
         <img id="logo_img" src="../res/logo.png" alt="Banki Logo">
     </div>
@@ -25,13 +27,13 @@
                 et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
             </p>
             <div  style="display:flex; flex-direction: row; justify-content: center; align-items: center">
-                <p style="padding-right:10px">@karinawagner_</p>
-                <p style="padding-left:10px">@denis_kasak</p>
+                <a style="padding-right:10px" href="https://www.instagram.com/karinawagner_/">@karinawagner_</a>
+                <a style="padding-left:10px" href="https://www.instagram.com/denis_kasak/">@denis_kasak</a>
             </div>
 
             <div>
                 <button class="login-button login-left" id="to_login"
-                    onclick="login(username.value, password.value)">Zum Login</button>
+                    onclick="gotoLogin()">Zum Login</button>
             </div>
             <p>TODO: Wenn auf Login gedrückt wird, soll die Sessionid überprüft werden. Wenn sie existiert, dann nicht
                 an Login.html sondern an overview direkt weiterleiten</p>
