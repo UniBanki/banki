@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="createcard.css">
-    <script type="text/javascript" src="createcard.js?version=<?= time() ?>>"></script>
+    <script type="text/javascript" src="createcard.js"></script>
 
     <title>Karten erstellen</title>
 </head>
@@ -16,7 +16,7 @@
         <div class="center-style">
         <a href="/" class="header-style">Banki</a></div>
         <div class="header-right" id="headerRight">
-            <a class="active" href="#learn">Weiter lernen</a>
+            <a class="active" href="#learn">Weiterlernen</a>
             <a></a>
             <a></a>
             <a class="active" href="#logout">Abmelden</a>
@@ -24,19 +24,21 @@
     </div>
     <div class="center-style">
         <div class="main-container" id="editor">
-            <div class="edit-container" id="toolbar">
-                <button data-action="bold" title="Fett" data-tag-name = "b">F</button>
-                <button data-action="cursive" title="Kursiv"  data-tag-name = "i">k</button>
-                <button data-action="underline" title="Unterstrichen"  data-tag-name = "u">U</button>    
-                <button data-action="strikeThrough" data-tag-name="strike" title="Durchgestrichen">S</button>
-                <button data-action="send">Senden</button>
-                <button data-action="toggle-view" title="HTML-Code anzeigen">Codeansicht</button>
+            <div class="edit-container toolbar" id="toolbar">
+                <button class="editor-btn" data-action="bold" title="Fett" data-tag-name = "b">F</button>
+                <button class="editor-btn" data-action="cursive" title="Kursiv"  data-tag-name = "i">k</button>
+                <button class="editor-btn" data-action="underline" title="Unterstrichen"  data-tag-name = "u">U</button>    
+                <button class="editor-btn" data-action="strikeThrough" data-tag-name="strike" title="Durchgestrichen">S</button>
+                <button class="editor-btn" data-action="send">Senden</button>
+                <button class="editor-btn" data-action="toggle-view" title="HTML-Code anzeigen">Codeansicht</button>
             </div>
-            <div id="wysiwyg" contenteditable>
-                <textarea class="edit-container" id="question"></textarea>
-            </div>
-            <div>
-                <textarea class="edit-container answer-container" id="answer"></textarea>
+            <div class="content-area">
+                <div id="wysiwyg" contenteditable>
+                    <textarea class="edit-container question"></textarea>
+                </div>
+                <div>
+                    <textarea class="edit-container answer-container"></textarea>
+                </div>
             </div>
             <div class="center-style">
             <button>Hinzufügen</button></div>
