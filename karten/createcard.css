@@ -80,27 +80,35 @@ button:hover{
     padding-top: 3em;
     padding-left: 16em;
     padding-right: 16em;
-    padding-bottom:1em;
+    padding-bottom:2em;
     background-color: #fefefe;
 }
 
-.edit-container{
-    border: solid;
-    border-color: #ffe571;
-    resize: none;
-    border-style: solid;
+.ql-editor{
+    font-family:'Quicksand', sans-serif;
+    border: 3px solid #ffe571;
+    padding-left: 20%;
     overflow: hidden;
-    width: 602px;
-    height: 52px;
+    width: 596px;
+    height: 70px;
     background-color: #ffffff;
     position: relative;
     margin-left:-13em;
-    padding: 0%;
+    padding-left: 2%;
     margin-top: 1em;
+    margin-right: -13.5em;
     font-size: 12pt;
-    font-family:'Quicksand', sans-serif;
 }
 
-.answer-container{
-    height: 265px;
+.ql-toolbar.ql-snow{
+    resize: none;
+    overflow: hidden;
+    width: 596px;
+    height: 70px;
+    background-color: #ffffff;
+    position: relative;
+    margin-left:-13em;
+    padding-left: 2%;
+    margin-top: 1em;
+    font-size: 12pt;
 }

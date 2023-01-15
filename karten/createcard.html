@@ -7,8 +7,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="createcard.css">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <script type="text/javascript" src="createcard.js"></script>
-
+    <style>
+        .ql-toolbar.ql-snow{
+            font-family:'Quicksand', sans-serif;
+            border: 3px solid #ffe571;
+            padding-left: 20%;
+        }
+        .ql-container.ql-snow{
+            border: none;
+        }
+    </style>
     <title>Karten erstellen</title>
 </head>
 <body onload="screenSize()">
@@ -23,27 +33,25 @@
         </div>
     </div>
     <div class="center-style">
-        <div class="main-container" id="editor">
-            <div class="edit-container toolbar" id="toolbar">
-                <button class="editor-btn" data-action="bold" title="Fett" data-tag-name = "b">F</button>
-                <button class="editor-btn" data-action="cursive" title="Kursiv"  data-tag-name = "i">k</button>
-                <button class="editor-btn" data-action="underline" title="Unterstrichen"  data-tag-name = "u">U</button>    
-                <button class="editor-btn" data-action="strikeThrough" data-tag-name="strike" title="Durchgestrichen">S</button>
-                <button class="editor-btn" data-action="send">Senden</button>
-                <button class="editor-btn" data-action="toggle-view" title="HTML-Code anzeigen">Codeansicht</button>
+        <div class="main-container" id="mainContainer">
+            <div class="center-style" id="editor">
+                <p>Hello World!</p>
+                <p>Some initial <strong>bold</strong> text</p>
             </div>
-            <div class="content-area">
-                <div id="wysiwyg" contenteditable>
-                    <textarea class="edit-container question"></textarea>
-                </div>
-                <div>
-                    <textarea class="edit-container answer-container"></textarea>
-                </div>
-            </div>
+            <div id="editora"></div>
             <div class="center-style">
-            <button>Hinzufügen</button></div>
+                <button>Hinzufügen</button></div>
         </div>
     </div>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>  
+    <script>
+        var quill = new Quill('#editor', {
+          theme: 'snow'
+        });
+        var quill = new Quill('#editora', {
+            theme: 'snow'
+        });
     
+    </script>
 </body>
 </html>
