@@ -1,3 +1,14 @@
+const backend_host = 'https://h2992036.stratoserver.net'
+
+function getCookie(cookieName) {//ignores attributes from cookies, returns only the values
+    let cookie = {};
+    document.cookie.split(';').forEach(function (el) {
+        let [key, value] = el.split('=');
+        cookie[key.trim()] = value;
+    })
+    return cookie[cookieName];
+}
+
 function bodyload() {
     document.body.addEventListener("keypress", function (event) {
         // If the user presses the "Enter" key on the keyboard
@@ -18,7 +29,7 @@ function login(username, password) {
         body: '{"username":"' + username + '","password":"' + password + '"}'
     };
 
-    fetch('https://h2992036.stratoserver.net/api/login', options)
+    fetch(`${backend_host}/api/login`, options)
         .then(response => response.json())
         .then(response => {
             if(response.err){
@@ -38,7 +49,7 @@ function register(username, password) {
         body: '{"username":"' + username + '","password":"' + password + '"}'
     };
 
-    fetch('https://h2992036.stratoserver.net/api/register', options)
+    fetch(`${backend_host}/api/register`, options)
         .then(response => response.json())
         .then(response => {
             if(response.err){
