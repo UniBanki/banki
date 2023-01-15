@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="DE">
-<head>
 
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,14 +10,17 @@
     <meta http-equiv="Expires" content="0" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <script type="text/javascript" src="login.js"></script>
-    <script type="text/javascript" src="modal.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script type="text/javascript" src="/login/login.js"></script>
+    <script type="text/javascript" src="/lib/modal.js"></script>
     <link rel="stylesheet" href="login.css">
-    <link rel="stylesheet" href="modal.css">
+    <link rel="stylesheet" href="/lib/modal.css">
     <title>Login</title>
 </head>
+
 <body onload="bodyload()">
     <header class="center-style">
         <a class="header-style" href="/">Banki</a>
@@ -25,22 +28,26 @@
     <div class="flex-style center-style">
         <div></div>
         <div></div>
-         <div class="log-container flex-log">
+        <div class="log-container flex-log">
             <h1 class="headline-text">Login</h1>
-                 <div>
-                    <label class="label-login" for="benutzername">Benutzername</label><br />
-                    <input class="input-field" type="text" id="username" name="username"><br />
-                </div>
-                <div>
-                    <label class="label-login" for="kennwort">Kennwort</label><br />
-                    <input class="input-field" type="password" minlength="5" maxlength="20" id="password" name="password"><br />
-                    <button class="login-button login-left" id="login" onclick="login(username.value, password.value)">Login</button>
-                    <button class="login-button register-right" id="register" onclick="register(username.value,password.value)">Register</button>
-                </div>
-                <div id="message-container"></div>
+            <div>
+                <label class="label-login" for="benutzername">Benutzername</label><br />
+                <input class="input-field" type="text" id="username" name="username"><br />
+            </div>
+            <div>
+                <label class="label-login" for="kennwort">Kennwort</label><br />
+                <input class="input-field" type="password" minlength="5" maxlength="20" id="password"
+                    name="password"><br />
+                <button class="login-button login-left" id="login"
+                    onclick="login(username.value, password.value)">Login</button>
+                <button class="login-button register-right" id="register"
+                    onclick="register(username.value,password.value)">Register</button>
+            </div>
+            <div id="message-container"></div>
         </div>
         <div></div>
         <div></div>
     </div>
 </body>
+
 </html>
