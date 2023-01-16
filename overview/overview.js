@@ -1,3 +1,5 @@
+const backend_host = 'https://h2992036.stratoserver.net';
+
 function onLoad() {
     getStacks()
         .then(function (stacks) {
@@ -11,21 +13,13 @@ function onLoad() {
 }
 
 
-function getCookie(cookieName) {//ignores attributes from cookies, returns only the values
-    let cookie = {};
-    document.cookie.split(';').forEach(function (el) {
-        let [key, value] = el.split('=');
-        cookie[key.trim()] = value;
-    })
-    return cookie[cookieName];
-}
 
 function insertStack(stackid, stackname) {
     const newstack = `
                     <div id="${stackid}" class="stack">
                         <button onclick="expandStack()">Übersicht</button>
                         <label>${stackname}</label>
-                        <button onclick="">Hinzufügen</button>
+                        <button onclick="createCard(${stackid})">Bearbeiten</button>
                         <button onclick="createModal('${stackid}', 'str', 'Neuen Stapelnamen eingeben:', [renameStack, 'undefined'])">Umbenennen</button>
                         <button onclick="createModal('${stackid}', 'yn', 'Sicher, dass du den Stapel löschen möchtest?', [deleteStack, 'undefined'])">Löschen</button>
                     </div>
@@ -35,15 +29,13 @@ function insertStack(stackid, stackname) {
 }
 
 function createStack(stackname) {
-
-
     const options = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: '{"sessionid":"' + getCookie('sessionid') + '","stackname":"' + stackname + '"}'
     };
 
-    fetch('https://techtrap.net/api/Stacks/create', options)
+    fetch(`${backend_host}/api/stacks/create`, options)
         .then(response => response.json())
         .then(function (response) {
             if (response.err) {
@@ -85,12 +77,13 @@ function screenSize(){
 function expandStack() {
 }
 
-function createCard() {
-    window.open('../karten/createcard.html', '_self');
+function createCard(el) {
+    console.log(el)
+    const stackid = el.id;
+    window.open(`/karten/createcard.html?stackid=${stackid}`, '_self');
 }
 
 function renameStack(newstackname, stackid) {
-
     const oldStackname = document.getElementById(stackid).getElementsByTagName("label")[0].innerHTML;
 
     const options = {
@@ -99,7 +92,7 @@ function renameStack(newstackname, stackid) {
         body: '{"sessionid":"' + getCookie('sessionid') + '","oldStackname":"' + oldStackname + '","newStackname":"' + newstackname + '"}'
     };
 
-    fetch('https://techtrap.net/api/Stacks/rename', options)
+    fetch(`${backend_host}/api/stacks/rename`, options)
         .then(response => response.json())
         .then(function (response) {
             if (response.err) {
@@ -123,7 +116,7 @@ function deleteStack(ignore, stackid) {
         body: '{"sessionid":"' + getCookie('sessionid') + '","stackname":"' + stackname + '"}'
     };
 
-    fetch('https://techtrap.net/api/Stacks/delete', options)
+    fetch(`${backend_host}/api/stacks/delete`, options)
         .then(response => response.json())
         .then(function (response) {
             if (response.err) {
@@ -143,7 +136,7 @@ function getStacks() {
             body: '{"sessionid":"' + getCookie('sessionid') + '"}'
         };
 
-        fetch('https://techtrap.net/api/Stacks/get', options)
+        fetch(`${backend_host}/api/stacks/getAll`, options)
             .then(response => response.json())
             .then(function (response) {
                 if (response.err) {
@@ -160,6 +153,10 @@ function exit() {
 
 }
 
+function logout(){
+    setCookie("sessionid", "");
+    window.open('/login/login.html','_self');
+}
 
 
 

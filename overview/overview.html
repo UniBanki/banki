@@ -8,9 +8,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="overview.css">
-    <link rel="stylesheet" href="modal.css">
+    <link rel="stylesheet" href="/lib/modal.css">
     <script type="text/javascript" src="overview.js"></script>
-    <script type="text/javascript" src="modal.js"></script>
+    <script type="text/javascript" src="/lib/modal.js"></script>
+    <script type="text/javascript" src="/lib/util.js"></script>
 
     <title>Overview</title>    
 </head>
@@ -21,7 +22,7 @@
         <div class="header-right" id="headerRight">
             <a class="active" href="#contact">Kontakt</a>
             <a></a>
-            <a class="active" href="#exit">Abmelden</a>
+            <a class="active" href="#exit" onclick="logout()">Abmelden</a>
         </div>
     </div>
 <div class="overview-container" id="overview">
