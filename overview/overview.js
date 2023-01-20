@@ -49,13 +49,12 @@ function createStack(stackname) {
         })
         .catch(err => createModal(null, 'err', err.message, [null]));
 
+}
 
 function screenSize(){
   console.info(`${ screen.width } × ${ screen.height }`);
   const header = document.getElementById("headerRight");
   const overviewCont = document.getElementById("overview");
-  const headerCenter = document.getElementById("headerCenter");
-
   if(screen.width >= 375 && screen.width <= 414){
     overviewCont.style.cssText += "margin-left: -6em; margin-top: -7em; width: 21em;";
     header.style.cssText += "float:none; display:flex; justify-content: center;";
@@ -70,9 +69,6 @@ function screenSize(){
   }
 }
 
-
-
-}
 
 function expandStack() {
 }
