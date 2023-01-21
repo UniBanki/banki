@@ -12,7 +12,7 @@ Nutzername:
 Passwort:
 - mögliche Zeichen: A-Z, a-z, 0-9, ._@$!%*#?&
 - 5-20 Zeichen lang
-## Backend API h2992036.stratoserver.net
+## Backend API https://h2992036.stratoserver.net
 Im folgenden sind nur die erfolgreichen API-Responses beschrieben. Bei Fehlern werden Fehlernachrichten in Textform geschickt.
 
 **/api/register** [POST]<br/>
