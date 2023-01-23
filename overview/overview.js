@@ -1,13 +1,13 @@
 const backend_host = 'https://h2992036.stratoserver.net';
 
-function onLoad() {
+function initStacks() {
     getStacks()
         .then(function (stacks) {
-            stacks.forEach(function (stack) {
-                let stackid = encodeURIComponent(stack.stackname);
-
-                insertStack(stackid, stack.stackname);
-            })
+            globStacks = stacks;
+            for (const [key, value] of Object.entries(stacks)) {
+                let stackid = encodeURIComponent(key);
+                insertStack(stackid, key);
+            }
         })
         .catch(err => createModal(null, 'err', err.message, [null]))
 }
@@ -74,7 +74,6 @@ function expandStack() {
 }
 
 function createCard(el) {
-    console.log(el)
     const stackid = el.id;
     window.open(`/karten/createcard.html?stackid=${stackid}`, '_self');
 }
@@ -149,9 +148,9 @@ function exit() {
 
 }
 
-function logout(){
+function logout() {
     setCookie("sessionid", "");
-    window.open('/login/login.html','_self');
+    window.open('/login/login.html', '_self');
 }
 
 
