@@ -3,11 +3,10 @@ const backend_host = 'https://h2992036.stratoserver.net';
 function onLoad() {
     getStacks()
         .then(function (stacks) {
-            stacks.forEach(function (stack) {
-                let stackid = encodeURIComponent(stack.stackname);
-
-                insertStack(stackid, stack.stackname);
-            })
+            for (const [key, value] of Object.entries(stacks)) {
+                let stackid = encodeURIComponent(key);
+                insertStack(stackid, key);
+            }
         })
         .catch(err => createModal(null, 'err', err.message, [null]))
 }
@@ -132,9 +131,9 @@ function exit() {
 
 }
 
-function logout(){
+function logout() {
     setCookie("sessionid", "");
-    window.open('/login/login.html','_self');
+    window.open('/login/login.html', '_self');
 }
 
 
