@@ -1,6 +1,6 @@
 const backend_host = 'https://h2992036.stratoserver.net';
 
-function onLoad() {
+function initStacks() {
     getStacks()
         .then(function (stacks) {
             for (const [key, value] of Object.entries(stacks)) {
