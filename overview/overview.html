@@ -15,11 +15,11 @@
 
     <title>Overview</title>    
 </head>
-<body onload="onLoad()">
+<body onload="checkLogin(),screenSize()">
     <div class="header">
-        <div class="center-style">
+        <div class="center-style" id="headerCenter">
         <a href="/" class="header-style">Banki</a></div>
-        <div class="header-right">
+        <div class="header-right" id="headerRight">
             <a class="active" href="#contact">Kontakt</a>
             <a></a>
             <a class="active" href="#exit" onclick="logout()">Abmelden</a>
