@@ -1,7 +1,7 @@
-function createEditor(){
+function createEditor() {
     var toolbarOptions = [[{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-    ['bold', 'italic', 'underline'],   
-    [{ 'list': 'ordered'}, { 'list': 'bullet' }],                                            
+    ['bold', 'italic', 'underline'],
+    [{ 'list': 'ordered' }, { 'list': 'bullet' }],
     ['link', 'image'],
     ['clean']];
 
@@ -10,13 +10,13 @@ function createEditor(){
         modules: {
             toolbar: toolbarOptions
         }
-      });
-      var quill = new Quill('#editora', {
-          theme: 'snow', 
-          modules: {
+    });
+    var quill = new Quill('#editora', {
+        theme: 'snow',
+        modules: {
             toolbar: toolbarOptions
-          }
-      });
+        }
+    });
 }
 
 function screenSize() {
@@ -47,7 +47,16 @@ function screenSize() {
     }
 }
 
-function createCard(){
+function createCard() {
     const question = document.getElementsByClassName("ql-editor")[0].innerHTML;
-    const answer = document.getElementsByClassName("ql-editor")[1].innerHTML; 
+    const answer = document.getElementsByClassName("ql-editor")[1].innerHTML;
+}
+
+function getCurrentStack() {
+    //holt sich den Stapelnamen aus der URL
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const stackid = urlParams.get("stackid");
+    const stackname = decodeURIComponent(stackid);
+    return stackname;
 }

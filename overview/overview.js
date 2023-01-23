@@ -3,6 +3,7 @@ const backend_host = 'https://h2992036.stratoserver.net';
 function initStacks() {
     getStacks()
         .then(function (stacks) {
+            globStacks = stacks;
             for (const [key, value] of Object.entries(stacks)) {
                 let stackid = encodeURIComponent(key);
                 insertStack(stackid, key);
@@ -73,7 +74,6 @@ function expandStack() {
 }
 
 function createCard(el) {
-    console.log(el)
     const stackid = el.id;
     window.open(`/karten/createcard.html?stackid=${stackid}`, '_self');
 }
