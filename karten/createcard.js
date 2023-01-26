@@ -24,10 +24,6 @@ function createEditor(){
     });
 }
 
-function editorResize(){
-    const toolbarCont = document.getElementsByClassName('.ql-toolbar');
-}
-
 function screenSize() {
     console.info(`${screen.width} × ${screen.height}`);
     const mainContainer = document.getElementById("mainContainer");
@@ -39,14 +35,14 @@ function screenSize() {
     if (screen.width >= 375 && screen.width <= 414) {
         header.style.cssText += "margin-top: 1em";
         mainContainer.style.cssText += "padding-top: 1em; padding-left: 8em;";
-        questCont.style.cssText += "font-size: 10pt; margin-left: 1.5em; width: 21em;";
+        //questCont.style.cssText += "font-size: 10pt; margin-left: 1.5em; width: 21em;";
         //toolbarCont.style.cssText += "font-size: 10pt; margin-left: 1.5em; width: 321px;";
         //answerCont.style.cssText += "font-size: 10pt; margin-left: 1.5em; width: 321px; height: 187px";
     }
     else if (screen.width < 374) {
         header.style.cssText += "margin-top: 1em";
         mainContainer.style.cssText += "padding: 0; margin-top: 1em; width: 330px;padding-top: 1em;";
-        questCont.style.cssText += "font-size: 10pt; margin-left: 1em; width: 296px;";
+        //questCont.style.cssText += "font-size: 10pt; margin-left: 1em; width: 296px;";
         //toolbarCont.style.cssText += "font-size: 10pt; margin-left: 1em; width: 296px;";
         //answerCont.style.cssText += "font-size: 10pt; margin-left: 1em; width: 296px; height: 187px";
     }
@@ -64,6 +60,7 @@ function getCurrentStack() {
     const stackname = decodeURIComponent(stackid);
     return stackname;
 }
+
 function createCard(){
     const frontContent = quillQuestion.getContents();
     const backConstent = quillAnswer.getContents();
@@ -76,17 +73,18 @@ function createCard(){
     const options = {
         method: 'POST', 
         headers: { 'Content-Type': 'application/json'}, 
-        body: '{"sessionid":"' + getCookie('sessionid') + '","stackname":"' + stackname + '","card":"' + card + '"}'
+        body: '{"sessionid":"' + getCookie('sessionid') + '","stackname":"' + 
+        getCurrentStack() + '","card":"' + card + '"}'
     };
-}
-    /*fetch(`${backend_host}//api/cards/update`, options)
+
+    fetch(`${backend_host}/api/cards/update`, options)
         .then(response => response.json())
         .then(function (response){
             if(response.err){
                 createModal(null, 'err', response.err, [null]);
             } else {
-
+                //???
             }
         })
         .catch(err => createModal(null, 'err', err.message, [null]));
-}*/
+}
