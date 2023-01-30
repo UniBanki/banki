@@ -87,14 +87,12 @@ button:hover{
 .ql-editor{
     font-family:'Quicksand', sans-serif;
     border: 3px solid #ffe571;
-    padding-left: 20%;
     overflow: hidden;
     width: 596px;
     height: 70px;
     background-color: #ffffff;
     position: relative;
     margin-left:-13em;
-    padding-left: 2%;
     margin-top: 1em;
     margin-right: -13.5em;
     font-size: 12pt;
