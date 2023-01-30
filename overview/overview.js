@@ -1,6 +1,10 @@
 const backend_host = 'https://h2992036.stratoserver.net';
 
+<<<<<<< Updated upstream
 function onLoad() {
+=======
+function updateStacks() {
+>>>>>>> Stashed changes
     getStacks()
         .then(function (stacks) {
             stacks.forEach(function (stack) {
@@ -44,6 +48,7 @@ function createStack(stackname) {
                 let stackid = encodeURIComponent(stackname);
                 if (stackname) {
                     insertStack(stackid, stackname);
+                    updateStacks();
                 }
             }
         })
@@ -78,6 +83,7 @@ function renameStack(newstackname, stackid) {
                 createModal(null, 'err', response.err, [null]);
             } else {
                 document.getElementById(stackid).getElementsByTagName("label")[0].innerHTML = newstackname;
+                updateStacks();
             }
         })
         .catch(err => createModal(null, 'err', err.message, [null]));
@@ -102,6 +108,7 @@ function deleteStack(ignore, stackid) {
                 createModal(null, 'err', response.err, [null]);
             } else {
                 document.getElementById(stackid).remove();
+                updateStacks();
             }
         })
         .catch(err => createModal(null, 'err', err.message, [null]));
