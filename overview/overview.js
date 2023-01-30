@@ -1,17 +1,13 @@
 const backend_host = 'https://h2992036.stratoserver.net';
 
-<<<<<<< Updated upstream
-function onLoad() {
-=======
 function updateStacks() {
->>>>>>> Stashed changes
     getStacks()
         .then(function (stacks) {
-            stacks.forEach(function (stack) {
-                let stackid = encodeURIComponent(stack.stackname);
-
-                insertStack(stackid, stack.stackname);
-            })
+            globStacks = stacks;
+            for (const [key, value] of Object.entries(stacks)) {
+                let stackid = encodeURIComponent(key);
+                insertStack(stackid, key);
+            }
         })
         .catch(err => createModal(null, 'err', err.message, [null]))
 }
@@ -54,15 +50,31 @@ function createStack(stackname) {
         })
         .catch(err => createModal(null, 'err', err.message, [null]));
 
-
-
 }
+
+function screenSize(){
+  console.info(`${ screen.width } × ${ screen.height }`);
+  const header = document.getElementById("headerRight");
+  const overviewCont = document.getElementById("overview");
+  if(screen.width >= 375 && screen.width <= 414){
+    overviewCont.style.cssText += "margin-left: -6em; margin-top: -7em; width: 21em;";
+    header.style.cssText += "float:none; display:flex; justify-content: center;";
+  }
+  else if (screen.width >= 415 && screen.width <=540){
+    overviewCont.style.cssText += "margin-left: -9em; margin-top: -7em; width: 31em;";
+    header.style.cssText += "float:none; display:flex; justify-content: center; margin-top:1em;";
+  }
+  else if (screen.width >= 768 && screen.width<= 820){
+    overviewCont.style.cssText += "margin-left: -13em; margin-top: -14em; width: 44em;";
+    header.style.cssText += "margin: -3em;";
+  }
+}
+
 
 function expandStack() {
 }
 
 function createCard(el) {
-    console.log(el)
     const stackid = el.id;
     window.open(`/karten/createcard.html?stackid=${stackid}`, '_self');
 }
@@ -139,9 +151,9 @@ function exit() {
 
 }
 
-function logout(){
+function logout() {
     setCookie("sessionid", "");
-    window.open('/login/login.html','_self');
+    window.open('/login/login.html', '_self');
 }
 
 
