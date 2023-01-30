@@ -29,7 +29,7 @@ res: true
 
 **/api/stacks/create** [POST]<br/>
 req: stackname, sessionid<br/>
-res: {}
+res: {stack}
 
 **/api/stacks/rename** [POST]<br/>
 req: oldStackname, newStackname, sessionid<br/>
