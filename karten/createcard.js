@@ -73,7 +73,7 @@ function createCard(){
     const options = {
         method: 'POST', 
         headers: { 'Content-Type': 'application/json'}, 
-        body: '{"sessionid":"' + getCookie('sessionid') + '","stackname":"' + 
+        body: '{"sessionid":"' + globSessionid + '","stackname":"' + 
         getCurrentStack() + '","card":"' + card + '"}'
     };
 

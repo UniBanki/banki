@@ -1,21 +1,25 @@
 const backend_host = 'https://h2992036.stratoserver.net';
+updateStacklist();
+//.....Model
 
-function updateStacks() {
-    getStacks()
-        .then(function (stacks) {
-            globStacks = stacks;
-            for (const [key, value] of Object.entries(stacks)) {
-                let stackid = encodeURIComponent(key);
-                insertStack(stackid, key);
-            }
-        })
-        .catch(err => createModal(null, 'err', err.message, [null]))
+function setStacks(stacks) {
+    localStorage.setItem("stacks", JSON.stringify(stacks));
+    updateStacklist(stacks);
 }
 
+function getStacks() {
+    //returns null if stacks are empty
+    return JSON.parse(localStorage.getItem("stacks"));
+}
 
+//......View
 
-function insertStack(stackid, stackname) {
-    const newstack = `
+async function updateStacklist() {
+    const stacks = await requestStacks();
+    document.getElementById("stacks").innerHTML = "";
+    for (const [stackname, value] of Object.entries(stacks)) {
+        let stackid = encodeURIComponent(stackname);
+        const newstack = `
                     <div id="${stackid}" class="stack">
                         <button onclick="expandStack()">Übersicht</button>
                         <label>${stackname}</label>
@@ -24,54 +28,50 @@ function insertStack(stackid, stackname) {
                         <button onclick="createModal('${stackid}', 'yn', 'Sicher, dass du den Stapel löschen möchtest?', [deleteStack, 'undefined'])">Löschen</button>
                     </div>
                     `;
-    const innerstacks = document.getElementById("stacks").innerHTML;
-    document.getElementById("stacks").innerHTML = newstack + innerstacks;
+        const innerstacks = document.getElementById("stacks").innerHTML;
+        document.getElementById("stacks").innerHTML = newstack + innerstacks;
+    }
 }
 
-function createStack(stackname) {
+function screenSize() {
+    console.info(`${screen.width} x ${screen.height}`);
+    const header = document.getElementById("headerRight");
+    const overviewCont = document.getElementById("overview");
+    if (screen.width >= 375 && screen.width <= 414) {
+        overviewCont.style.cssText += "margin-left: -6em; margin-top: -7em; width: 21em;";
+        header.style.cssText += "float:none; display:flex; justify-content: center;";
+    }
+    else if (screen.width >= 415 && screen.width <= 540) {
+        overviewCont.style.cssText += "margin-left: -9em; margin-top: -7em; width: 31em;";
+        header.style.cssText += "float:none; display:flex; justify-content: center; margin-top:1em;";
+    }
+    else if (screen.width >= 768 && screen.width <= 820) {
+        overviewCont.style.cssText += "margin-left: -13em; margin-top: -14em; width: 44em;";
+        header.style.cssText += "margin: -3em;";
+    }
+}
+
+//.......Controller
+
+async function createStack(stackname) {
     const options = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: '{"sessionid":"' + getCookie('sessionid') + '","stackname":"' + stackname + '"}'
+        body: '{"sessionid":"' + getSessionid() + '","stackname":"' + stackname + '"}'
     };
 
-    fetch(`${backend_host}/api/stacks/create`, options)
-        .then(response => response.json())
-        .then(function (response) {
-            if (response.err) {
-                createModal(null, 'err', response.err, [null]);
-            } else {
-                let stackid = encodeURIComponent(stackname);
-                if (stackname) {
-                    insertStack(stackid, stackname);
-                    updateStacks();
-                }
-            }
-        })
-        .catch(err => createModal(null, 'err', err.message, [null]));
 
-}
-
-function screenSize(){
-  console.info(`${ screen.width } × ${ screen.height }`);
-  const header = document.getElementById("headerRight");
-  const overviewCont = document.getElementById("overview");
-  if(screen.width >= 375 && screen.width <= 414){
-    overviewCont.style.cssText += "margin-left: -6em; margin-top: -7em; width: 21em;";
-    header.style.cssText += "float:none; display:flex; justify-content: center;";
-  }
-  else if (screen.width >= 415 && screen.width <=540){
-    overviewCont.style.cssText += "margin-left: -9em; margin-top: -7em; width: 31em;";
-    header.style.cssText += "float:none; display:flex; justify-content: center; margin-top:1em;";
-  }
-  else if (screen.width >= 768 && screen.width<= 820){
-    overviewCont.style.cssText += "margin-left: -13em; margin-top: -14em; width: 44em;";
-    header.style.cssText += "margin: -3em;";
-  }
-}
-
-
-function expandStack() {
+    try {
+        let response = await fetch(`${backend_host}/api/stacks/create`, options);
+        response = response.json();
+        if (response.err) throw new Error(response.err);
+        let stackid = encodeURIComponent(stackname);
+        if (stackname) {
+            updateStacklist()
+        }
+    } catch (e) {
+        createModal(null, 'err', e.message, [null]);
+    }
 }
 
 function createCard(el) {
@@ -85,7 +85,7 @@ function renameStack(newstackname, stackid) {
     const options = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: '{"sessionid":"' + getCookie('sessionid') + '","oldStackname":"' + oldStackname + '","newStackname":"' + newstackname + '"}'
+        body: '{"sessionid":"' + getSessionid() + '","oldStackname":"' + oldStackname + '","newStackname":"' + newstackname + '"}'
     };
 
     fetch(`${backend_host}/api/stacks/rename`, options)
@@ -94,23 +94,19 @@ function renameStack(newstackname, stackid) {
             if (response.err) {
                 createModal(null, 'err', response.err, [null]);
             } else {
-                document.getElementById(stackid).getElementsByTagName("label")[0].innerHTML = newstackname;
-                updateStacks();
+                updateStacklist()
             }
         })
         .catch(err => createModal(null, 'err', err.message, [null]));
-
-
 }
 
 function deleteStack(ignore, stackid) {
-
     const stackname = document.getElementById(stackid).getElementsByTagName("label")[0].innerText;
 
     const options = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: '{"sessionid":"' + getCookie('sessionid') + '","stackname":"' + stackname + '"}'
+        body: '{"sessionid":"' + getSessionid() + '","stackname":"' + stackname + '"}'
     };
 
     fetch(`${backend_host}/api/stacks/delete`, options)
@@ -119,19 +115,18 @@ function deleteStack(ignore, stackid) {
             if (response.err) {
                 createModal(null, 'err', response.err, [null]);
             } else {
-                document.getElementById(stackid).remove();
-                updateStacks();
+                updateStacklist()
             }
         })
         .catch(err => createModal(null, 'err', err.message, [null]));
 }
 
-function getStacks() {
+async function requestStacks() {
     return new Promise(function (resolve, reject) {
         const options = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: '{"sessionid":"' + getCookie('sessionid') + '"}'
+            body: '{"sessionid":"' + getSessionid() + '"}'
         };
 
         fetch(`${backend_host}/api/stacks/getAll`, options)
@@ -147,12 +142,8 @@ function getStacks() {
 
 }
 
-function exit() {
-
-}
-
 function logout() {
-    setCookie("sessionid", "");
+    setSessionid("");
     window.open('/login/login.html', '_self');
 }
 

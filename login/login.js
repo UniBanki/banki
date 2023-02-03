@@ -21,25 +21,25 @@ function bodyload() {
 }
 
 
-function login(username, password) {
-
-    const options = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: '{"username":"' + username + '","password":"' + password + '"}'
-    };
-
-    fetch(`${backend_host}/api/login`, options)
-        .then(response => response.json())
-        .then(response => {
-            if(response.err){
-                createModal(this, 'err', response.err, [])
-            }else{
-                document.cookie = "sessionid=" + response.sessionid + "; path=/; SameSite=None; Secure";
-                window.open('/overview/overview.html','_self');                
-            }         
-        })
-        .catch(err => createModal(null, 'err', err.message));
+async function login(username, password) {
+    try {
+        const options = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: '{"username":"' + username + '","password":"' + password + '"}'
+        };
+        let response = await fetch(`${backend_host}/api/login`, options);
+        response = await response.json();
+        console.log(response)
+        if (response.err) {
+            createModal(this, 'err', response.err, []);
+        } else {
+            setSessionid(response.sessionid);
+            window.open('/overview/overview.html', '_self');
+        }
+    } catch (err) {
+        createModal(null, 'err', err.message);
+    }
 }
 
 function register(username, password) {
@@ -52,12 +52,12 @@ function register(username, password) {
     fetch(`${backend_host}/api/register`, options)
         .then(response => response.json())
         .then(response => {
-            if(response.err){
+            if (response.err) {
                 createModal(this, 'err', response.err, [])
-            }else{
-                document.cookie = "sessionid=" + response.sessionid + "; path=/; SameSite=None; Secure";
-                window.open('/overview/overview.html','_self');
-            }            
+            } else {
+                setSessionid(response.sessionid);
+                window.open('/overview/overview.html', '_self');
+            }
         })
         .catch(err => createModal(null, 'err', err.message));
 }
