@@ -1,6 +1,7 @@
 body{
     font-family: 'Quicksand', sans-serif;
-    background-color: #fcf9ec;
+    background-image: url("../res/bg.png");
+    background-repeat: repeat;
     padding: 0;
     margin:0;
 }
