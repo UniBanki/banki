@@ -63,27 +63,28 @@ function getCurrentStack() {
 
 function createCard(){
     const frontContent = quillQuestion.getContents();
-    const backConstent = quillAnswer.getContents();
+    const backContent = quillAnswer.getContents();
 
     const card = {
         front: frontContent, 
-        back: backConstent
+        back: backContent
     };
 
-    const options = {
+   const options = {
         method: 'POST', 
         headers: { 'Content-Type': 'application/json'}, 
         body: '{"sessionid":"' + getCookie('sessionid') + '","stackname":"' + 
-        getCurrentStack() + '","card":"' + card + '"}'
+        getCurrentStack() + '","card":"' + JSON.stringify(card) + '"}'
     };
 
-    fetch(`${backend_host}/api/cards/update`, options)
+   fetch(`${backend_host}/api/cards/update`, options)
         .then(response => response.json())
         .then(function (response){
             if(response.err){
                 createModal(null, 'err', response.err, [null]);
-            } else {
-                //???
+            } else{
+                quillQuestion.setContents([{ insert: '\n' }]);
+                quillAnswer.setContents([{ insert: '\n' }]);
             }
         })
         .catch(err => createModal(null, 'err', err.message, [null]));
