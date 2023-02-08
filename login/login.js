@@ -32,13 +32,13 @@ async function login(username, password) {
         response = await response.json();
         console.log(response)
         if (response.err) {
-            createModal(this, 'err', response.err, []);
+            createModal('err', response.err);
         } else {
             setSessionid(response.sessionid);
             window.open('/overview/overview.html', '_self');
         }
     } catch (err) {
-        createModal(null, 'err', err.message);
+        createModal('err', err.message);
     }
 }
 
@@ -53,11 +53,11 @@ function register(username, password) {
         .then(response => response.json())
         .then(response => {
             if (response.err) {
-                createModal(this, 'err', response.err, [])
+                createModal('err', response.err)
             } else {
                 setSessionid(response.sessionid);
                 window.open('/overview/overview.html', '_self');
             }
         })
-        .catch(err => createModal(null, 'err', err.message));
+        .catch(err => createModal('err', err.message));
 }

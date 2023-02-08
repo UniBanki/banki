@@ -20,7 +20,7 @@
     <title>Overview</title>
 </head>
 
-<body onload="screenSize(),updateStacklist()">
+<body onload="onload()">
     <div class="header">
         <div class="center-style" id="headerCenter">
             <a href="/" class="header-style">Banki</a>
@@ -34,7 +34,20 @@
     <div class="overview-container" id="overview">
         <div>
             <button id="btnNew"
-                onclick="createModal(null, 'str', 'Wie soll der neue Stapel heißen?', [createStack])">Neuer
+                onclick="createModal('str', 'Wie soll der neue Stapel heißen?',
+                async (stackname)=>{
+                    try {
+                        checkStackname(stackname);
+                        createStack(stackname);
+                        const stacks = await serverSetStacks();
+                        setStacks(stacks);
+                        updateStacklist(stacks);
+                    } catch (e) {
+                        createModal('err', e.message);
+                    }
+                }
+                )
+                ">Neuer
                 Stapel</button>
         </div>
         <div id="stacks" class="stacks">
