@@ -66,9 +66,7 @@ async function updateStacklist(stacks) {
                     }catch(e){
                         createModal('err', e.message);
                     }
-                })">
-                    Löschen
-                </button>
+                })"><img src="eimer.png" height="20"></button>
             </div>`;
         const innerstacks = document.getElementById("stacks").innerHTML;
         document.getElementById("stacks").innerHTML = newstack + innerstacks;
