@@ -6,13 +6,18 @@ function createContent(){
         modules: {
             toolbar: false 
           },
-          theme: 'snow'
+          theme: 'snow', 
+          readOnly: true
     });
 
     quillAnswer = new Quill('#contentAnswer', {
         modules: {
             toolbar: false 
           },
-          theme: 'snow'
+          theme: 'snow',
+          readOnly: true
     });
+
+    quillQuestion.blur();
+    quillAnswer.blur();
 }
