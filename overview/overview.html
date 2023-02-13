@@ -1,36 +1,59 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="overview.css">
     <link rel="stylesheet" href="/lib/modal.css">
+    <script type="text/javascript" src="/lib/util.js"></script>
     <script type="text/javascript" src="overview.js"></script>
     <script type="text/javascript" src="/lib/modal.js"></script>
-    <script type="text/javascript" src="/lib/util.js"></script>
 
-    <title>Overview</title>    
+
+    <title>Overview</title>
 </head>
-<body onload="checkLogin(),screenSize(),initStacks()">
+
+<body onload="onload()">
     <div class="header">
         <div class="center-style" id="headerCenter">
-        <a href="/" class="header-style">Banki</a></div>
+            <a href="/" class="header-style">Banki</a>
+        </div>
         <div class="header-right" id="headerRight">
             <a class="active" href="#contact">Kontakt</a>
             <a></a>
             <a class="active" href="#exit" onclick="logout()">Abmelden</a>
         </div>
     </div>
-<div class="overview-container" id="overview">
-    <div>
-    <button id="btnNew" onclick="createModal(null, 'str', 'Wie soll der neue Stapel heißen?', [createStack])">Neuer Stapel</button></div>
-    <div id="stacks" class="stacks">
-        
+    <div class="overview-container" id="overview">
+        <div>
+            <button id="btnNew"
+                onclick="createModal('str', 'Wie soll der neue Stapel heißen?',
+                async (stackname)=>{
+                    try {
+                        checkStackname(stackname);
+                        createStack(stackname);
+                        const stacks = await serverSetStacks();
+                        setStacks(stacks);
+                        updateStacklist(stacks);
+                    } catch (e) {
+                        createModal('err', e.message);
+                    }
+                }
+                )
+                ">Neuer
+                Stapel</button>
+        </div>
+        <div id="stacks" class="stacks">
+
+        </div>
     </div>
-</div>
 </body>
+
 </html>

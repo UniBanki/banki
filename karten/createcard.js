@@ -73,8 +73,8 @@ function createCard(){
    const options = {
         method: 'POST', 
         headers: { 'Content-Type': 'application/json'}, 
-        body: '{"sessionid":"' + getCookie('sessionid') + '","stackname":"' + 
-        getCurrentStack() + '","card":"' + JSON.stringify(card) + '"}'
+        body: '{"sessionid":"' + globSessionid + '","stackname":"' + 
+        getCurrentStack() + '","card":"' + card + '"}'
     };
 
    fetch(`${backend_host}/api/cards/update`, options)
