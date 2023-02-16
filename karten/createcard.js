@@ -52,21 +52,14 @@ function screenSize() {
     }
 }
 
-function getCurrentStack() {
-    //holt sich den Stapelnamen aus der URL
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const stackid = urlParams.get("stackid");
-    const stackname = decodeURIComponent(stackid);
-    return stackname;
-}
+
 
 async function createCard() {
     const card = {
         front: quillQuestion.getContents(),
         back: quillAnswer.getContents()
     };
-    const stackname = getCurrentStack();
+    const stackname = getUrlParameter("stackid");
 
     let stacks = getStacks();
 

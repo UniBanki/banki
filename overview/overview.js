@@ -23,6 +23,7 @@ async function updateStacklist(stacks) {
         const newstack = `<div id="${stackid}" class="stack">
                 <button onclick="expandStack()">Übersicht</button>
                 <label>${stacks[i].stackname}</label>
+                <button onclick="learnCard(${stackid})">Lernen</button>
                 <button onclick="createCard(${stackid})">Bearbeiten</button>
                 <button onclick="createModal('str', 'Neuen Stapelnamen eingeben:', async (newStackname)=>{
                     try {
@@ -102,6 +103,11 @@ function checkStackname(stackname) {
 function createCard(el) {
     const stackid = el.id;
     window.open(`/karten/createcard.html?stackid=${stackid}`, "_self");
+}
+
+function learnCard(el){
+    const stackid = el.id;
+    window.open(`/karten/learncard.html?stackid=${stackid}`, "_self");
 }
 
 function renameStack(newStackname, oldStackname) {
