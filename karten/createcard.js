@@ -1,24 +1,24 @@
 const backend_host = 'https://h2992036.stratoserver.net';
-var quillQuestion; 
+var quillQuestion;
 var quillAnswer;
 
 
-function createEditor(){
+function createEditor() {
     var toolbarOptions = [[{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-    ['bold', 'italic', 'underline'],   
-    [{ 'list': 'ordered'}, { 'list': 'bullet' }],                                            
+    ['bold', 'italic', 'underline'],
+    [{ 'list': 'ordered' }, { 'list': 'bullet' }],
     ['link', 'image']];
 
-     quillQuestion = new Quill('#editor', {
+    quillQuestion = new Quill('#editor', {
         theme: 'snow',
         modules: {
             toolbar: toolbarOptions
-            
+
         }
     });
-     quillAnswer = new Quill('#editora', {
-          theme: 'snow', 
-          modules: {
+    quillAnswer = new Quill('#editora', {
+        theme: 'snow',
+        modules: {
             toolbar: toolbarOptions
         }
     });
@@ -61,31 +61,22 @@ function getCurrentStack() {
     return stackname;
 }
 
-function createCard(){
-    const frontContent = quillQuestion.getContents();
-    const backContent = quillAnswer.getContents();
-
+async function createCard() {
     const card = {
-        front: frontContent, 
-        back: backContent
+        front: quillQuestion.getContents(),
+        back: quillAnswer.getContents()
     };
+    const stackname = getCurrentStack();
 
-   const options = {
-        method: 'POST', 
-        headers: { 'Content-Type': 'application/json'}, 
-        body: '{"sessionid":"' + globSessionid + '","stackname":"' + 
-        getCurrentStack() + '","card":"' + card + '"}'
-    };
+    let stacks = getStacks();
 
-   fetch(`${backend_host}/api/cards/update`, options)
-        .then(response => response.json())
-        .then(function (response){
-            if(response.err){
-                createModal(null, 'err', response.err, [null]);
-            } else{
-                quillQuestion.setContents([{ insert: '\n' }]);
-                quillAnswer.setContents([{ insert: '\n' }]);
-            }
-        })
-        .catch(err => createModal(null, 'err', err.message, [null]));
+    for(let i = 0; i<stacks.length; i++){
+        if(stacks[i].stackname===stackname){
+            stacks[i].cards.push(card);
+            break;
+        }
+    }    
+    setStacks(stacks);
+    stacks = await serverSetStacks();
+    setStacks(stacks);
 }

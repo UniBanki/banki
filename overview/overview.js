@@ -1,25 +1,5 @@
 const backend_host = "https://h2992036.stratoserver.net";
 
-//.....Model
-
-function setStacks(stacks) {
-    localStorage.setItem("stacks", JSON.stringify(stacks));
-}
-
-function getStacks() {
-    //returns null if stacks are empty
-    try {
-        const stacks = JSON.parse(localStorage.getItem("stacks"));
-        if (stacks == null) {
-            return [];
-        } else {
-            return stacks;
-        }
-    } catch (e) {
-        return [];
-    }
-}
-
 //......View
 
 async function onload() {
@@ -102,7 +82,7 @@ async function createStack(stackname) {
         checkStackname(stackname);
         stacks.push({
             stackname: stackname,
-            cards: {},
+            cards: [],
         });
         setStacks(stacks);
     } catch (e) {
@@ -152,60 +132,7 @@ function deleteStack(stackname) {
     setStacks(stacks);
 }
 
-async function serverGetStacks() {
-    //returns stacks from server
-    return new Promise(async function (resolve, reject) {
-        const options = {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: '{"sessionid":"' + getSessionid() + '"}',
-        };
 
-        try {
-            let response = await fetch(
-                `${backend_host}/api/stacks/get`,
-                options
-            );
-            response = await response.json();
-            if (response.err) {
-                throw new Error(response.err);
-            }
-
-            resolve(response.stacks);
-        } catch (e) {
-            reject(e);
-        }
-    });
-}
-
-async function serverSetStacks() {
-    return new Promise(async function (resolve, reject) {
-        const options = {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body:
-                '{"sessionid":"' +
-                getSessionid() +
-                '", "stacks":' +
-                JSON.stringify(getStacks()) +
-                "}",
-        };
-
-        try {
-            let response = await fetch(
-                `${backend_host}/api/stacks/set`,
-                options
-            );
-            response = await response.json();
-            if (response.err) {
-                throw new Error(response.err);
-            }
-            resolve(response.stacks);
-        } catch (e) {
-            reject(e);
-        }
-    });
-}
 
 function logout() {
     setSessionid("");
