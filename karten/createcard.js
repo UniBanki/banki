@@ -57,7 +57,8 @@ function screenSize() {
 async function createCard() {
     const card = {
         front: quillQuestion.getContents(),
-        back: quillAnswer.getContents()
+        back: quillAnswer.getContents(),
+        numcorrect:0,
     };
     const stackname = getUrlParameter("stackid");
 
