@@ -74,7 +74,7 @@ function screenSize() {
     }
 }
 
-//.......Controller
+//........Controller
 
 async function createStack(stackname) {
     try {
