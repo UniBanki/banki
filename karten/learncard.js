@@ -1,23 +1,7 @@
 var quillQuestion;
 var quillAnswer; 
-
-function createContent(){
-    quillQuestion = new Quill('#contentQuestion', {
-        modules: {
-            toolbar: false 
-          },
-          theme: 'snow', 
-          readOnly: true
-    });
-
-    quillAnswer = new Quill('#contentAnswer', {
-        modules: {
-            toolbar: false 
-          },
-          theme: 'snow',
-          readOnly: true
-    });
-}
+var stack;
+var card;
 
 function screenSize() {
     console.info(`${screen.width} × ${screen.height}`);
@@ -37,4 +21,71 @@ function screenSize() {
         header.style.cssText += "margin: -2em";
         mainContainer.style.cssText += "margin-top: 4em;";
     }
+}
+
+function createContent(){
+    quillQuestion = new Quill('#contentQuestion', {
+        modules: {
+            toolbar: false 
+          },
+          theme: 'snow', 
+          readOnly: true
+    });
+
+    quillAnswer = new Quill('#contentAnswer', {
+        modules: {
+            toolbar: false 
+          },
+          theme: 'snow',
+          readOnly: true
+    });
+}
+
+
+function bodyLoad(){
+    createContent();
+
+    const stackname = getUrlParameter("stackid"); 
+
+    const stacks = getStacks(); 
+
+    for(let i = 0; i < stacks.length; i++)
+    {
+        if(stacks[i].stackname === stackname)
+        {
+            stack = stacks[i];
+            break;
+        }
+    }
+    getCard();
+}
+
+function getCard(){
+    let cards = stack.cards;
+    var front; 
+    var back;
+
+    for (let i = 0; i < cards.length; i++)
+    {
+        if(cards[i].numcorrect < 3)
+        {
+            card = cards[i];
+            front = card.front;
+            back = card.back;
+            quillQuestion.setContents(front);
+            quillAnswer.setContents(back);
+        }
+    }
+}
+
+function statisticsCard(result){
+    if (result == true){
+        card.numcorrect = card.numcorrect + 1;
+    }
+
+    if (result == false){
+        card.numcorrect = 0; 
+    }
+
+    getCard();
 }
