@@ -10,16 +10,25 @@ function getCookie(cookieName) {//ignores attributes from cookies, returns only 
 }
 
 function bodyload() {
-    document.body.addEventListener("keypress", function (event) {
-        // If the user presses the "Enter" key on the keyboard
-        if (event.key === "Enter") {
-            // Cancel the default action, if needed
-            document.getElementById("login").click();
-
-        };
-    })
+    addLoginEnter();
 }
 
+function enterLogin (event) {
+    // If the user presses the "Enter" key on the keyboard
+    if (event.key === "Enter") {
+        // Cancel the default action, if needed
+        document.getElementById("login").click();
+
+    };
+}
+
+function addLoginEnter(){
+    document.body.addEventListener("keypress", enterLogin)
+}
+
+function removeLoginEnter(){
+    document.body.removeEventListener("keypress", enterLogin)
+}
 
 async function login(username, password) {
     try {
@@ -30,34 +39,42 @@ async function login(username, password) {
         };
         let response = await fetch(`${backend_host}/api/login`, options);
         response = await response.json();
-        console.log(response)
         if (response.err) {
-            createModal('err', response.err);
+            throw new Error(response.err);
         } else {
             setSessionid(response.sessionid);
             window.open('/overview/overview.html', '_self');
         }
     } catch (err) {
-        createModal('err', err.message);
+        removeLoginEnter();
+        createModal('err', err.message, ()=>{
+            addLoginEnter();
+        });
     }
 }
 
-function register(username, password) {
-    const options = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: '{"username":"' + username + '","password":"' + password + '"}'
-    };
+async function register(username, password) {
+    
 
-    fetch(`${backend_host}/api/register`, options)
-        .then(response => response.json())
-        .then(response => {
-            if (response.err) {
-                createModal('err', response.err)
-            } else {
-                setSessionid(response.sessionid);
-                window.open('/overview/overview.html', '_self');
-            }
-        })
-        .catch(err => createModal('err', err.message));
+    try {
+        const options = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: '{"username":"' + username + '","password":"' + password + '"}'
+        };
+        let response = awafetch(`${backend_host}/api/register`, options)
+        response = await response.json();
+        if (response.err) {
+            throw new Error(response.err);
+        } else {
+            setSessionid(response.sessionid);
+            window.open('/overview/overview.html', '_self');
+        }
+    } catch (e) {
+        removeLoginEnter();
+        createModal('err', e.message, ()=>{
+            addLoginEnter();
+        });
+    }
 }
+
