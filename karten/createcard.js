@@ -59,6 +59,7 @@ async function createCard() {
         front: quillQuestion.getContents(),
         back: quillAnswer.getContents(),
         numcorrect:0,
+        id: Date.now().toString(),
     };
     const stackname = getUrlParameter("stackid");
 
