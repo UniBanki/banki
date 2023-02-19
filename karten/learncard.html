@@ -6,11 +6,26 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script type="text/javascript" src="learncard.js"></script>
+    <script type="text/javascript" src="/lib/util.js"></script>
     <link rel="stylesheet" href="createcard.css">
-    
+    <style>
+        .ql-toolbar.ql-snow{
+            font-family:'Quicksand', sans-serif;
+            border: 3px solid #ffe571;
+            padding-left: 20%;
+        }
+        .ql-container.ql-snow{
+            border: none;
+        }
+        .ql-editor{
+            padding: 20px 15px;
+        }
+    </style>
     <title>Karten lernen</title>
 </head>
-<body>
+<body onload="bodyLoad()">
     <div class="header">
         <div class="center-style">
         <a href="/" class="header-style">Banki</a></div>
@@ -21,20 +36,19 @@
             <a class="active" href="#logout">Abmelden</a>
         </div>
     </div>
-    <div class="center-style">
-        <div class="main-container">
-            <div class="edit-container">
-                
-            </div>
-            <div class="edit-container">
-
+    <div class="center-style" style="display: flexbox;">
+        <div class="main-container" id="mainContainer">
+            <div class="edit-container" id="contentQuestion"></div>
+            <div id="contentAnswer"></div>
+            <div class="center-style">
+                <button style="margin: 6px;" id="getAnswer" onclick="getAnswer()">Antwort anzeigen</button>
             </div>
             <div class="center-style">
-                <button>Weiterlernen</button>
-                <button>Gelernt</button>
+                <button onclick="statisticsCard(false), getCard()">Falsch</button>
+                <button onclick="statisticsCard(true), getCard()">Richtig</button>
             </div>
         </div>
     </div>
-    
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>   
 </body>
 </html>

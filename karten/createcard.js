@@ -59,6 +59,7 @@ async function createCard() {
         front: quillQuestion.getContents(),
         back: quillAnswer.getContents(),
         numcorrect:0,
+        id: Date.now().toString(),
     };
     const stackname = getUrlParameter("stackid");
 
@@ -73,4 +74,6 @@ async function createCard() {
     setStacks(stacks);
     stacks = await serverSetStacks();
     setStacks(stacks);
+    quillQuestion.setContents([{ insert: '\n' }]);
+    quillAnswer.setContents([{ insert: '\n' }]);
 }
