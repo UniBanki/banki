@@ -74,4 +74,6 @@ async function createCard() {
     setStacks(stacks);
     stacks = await serverSetStacks();
     setStacks(stacks);
+    quillQuestion.setContents([{ insert: '\n' }]);
+    quillAnswer.setContents([{ insert: '\n' }]);
 }

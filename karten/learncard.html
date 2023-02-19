@@ -41,8 +41,11 @@
             <div class="edit-container" id="contentQuestion"></div>
             <div id="contentAnswer"></div>
             <div class="center-style">
-                <button onclick="statisticsCard(false)">Falsch</button>
-                <button onclick="statisticsCard(true)">Richtig</button>
+                <button style="margin: 6px;" id="getAnswer" onclick="getAnswer()">Antwort anzeigen</button>
+            </div>
+            <div class="center-style">
+                <button onclick="statisticsCard(false), getCard()">Falsch</button>
+                <button onclick="statisticsCard(true), getCard()">Richtig</button>
             </div>
         </div>
     </div>
