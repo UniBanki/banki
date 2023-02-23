@@ -17,6 +17,20 @@ img {
     margin: 1%;
 }
 
+#textblock{
+    background-image: url("../res/weiss\ \(2\).png");
+    background-size:790px;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: -4em;
+    padding: 8em;
+}
+
+.content-style{
+    margin: 0;
+    padding: 0;
+}
+
 button{
     font-family: 'Quicksand', sans-serif;
     display:inline-block;
@@ -36,15 +50,21 @@ button:hover{
 }
 
 #logo_cont {
-    margin: auto;
+    margin: -1em;
     text-align: center;
     padding-top: 5vh;
 }
 
 #logo_img{
-    width: 800px
+    width: 779px
 }
 
 #textblock{
     width: 60vw
+}
+
+p{
+    padding-left: 16em;
+    padding-right: 15em;
+    padding-top: 5em;
 }
