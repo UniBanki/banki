@@ -32,23 +32,23 @@ function screenSize() {
     //const answerCont = document.getElementById("answer");
     const header = document.getElementById("headerRight");
 
-    if (screen.width >= 375 && screen.width <= 414) {
-        header.style.cssText += "margin-top: 1em";
-        mainContainer.style.cssText += "padding-top: 1em; padding-left: 8em;";
+    if (screen.width >= 375 && screen.width <= 414) {//screen.width ist 375 bis 414
+        //header.style.cssText += "margin-top: 1em";
+        //mainContainer.style.cssText += "padding-top: 1em; padding-left: 8em;";
         //questCont.style.cssText += "font-size: 10pt; margin-left: 1.5em; width: 21em;";
         //toolbarCont.style.cssText += "font-size: 10pt; margin-left: 1.5em; width: 321px;";
         //answerCont.style.cssText += "font-size: 10pt; margin-left: 1.5em; width: 321px; height: 187px";
     }
     else if (screen.width < 374) {
-        header.style.cssText += "margin-top: 1em";
-        mainContainer.style.cssText += "padding: 0; margin-top: 1em; width: 330px;padding-top: 1em;";
+        //header.style.cssText += "margin-top: 1em";
+        //mainContainer.style.cssText += "padding: 0; margin-top: 1em; width: 330px;padding-top: 1em;";
         //questCont.style.cssText += "font-size: 10pt; margin-left: 1em; width: 296px;";
         //toolbarCont.style.cssText += "font-size: 10pt; margin-left: 1em; width: 296px;";
         //answerCont.style.cssText += "font-size: 10pt; margin-left: 1em; width: 296px; height: 187px";
     }
     else if (screen.width == 768) {
-        header.style.cssText += "margin: -2em";
-        mainContainer.style.cssText += "margin-top: 4em;";
+        //header.style.cssText += "margin: -2em";
+        //mainContainer.style.cssText += "margin-top: 4em;";
     }
 }
 
@@ -58,19 +58,19 @@ async function createCard() {
     const card = {
         front: quillQuestion.getContents(),
         back: quillAnswer.getContents(),
-        numcorrect:0,
+        numcorrect: 0,
         id: Date.now().toString(),
     };
     const stackname = getUrlParameter("stackid");
 
     let stacks = getStacks();
 
-    for(let i = 0; i<stacks.length; i++){
-        if(stacks[i].stackname===stackname){
+    for (let i = 0; i < stacks.length; i++) {
+        if (stacks[i].stackname === stackname) {
             stacks[i].cards.push(card);
             break;
         }
-    }    
+    }
     setStacks(stacks);
     stacks = await serverSetStacks();
     setStacks(stacks);
