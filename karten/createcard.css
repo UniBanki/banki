@@ -97,7 +97,7 @@ button:hover{
 
 .ql-toolbar.ql-snow{
     resize: none;
-    overflow: auto;
+    overflow: visible;
     width: 100%;
     height: fill;
     background-color: #ffffff;
