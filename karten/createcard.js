@@ -55,25 +55,30 @@ function screenSize() {
 
 
 async function createCard() {
-    const card = {
-        front: quillQuestion.getContents(),
-        back: quillAnswer.getContents(),
-        numcorrect: 0,
-        id: Date.now().toString(),
-    };
-    const stackname = getUrlParameter("stackid");
+try {
+        const card = {
+            front: quillQuestion.getContents(),
+            back: quillAnswer.getContents(),
+            numcorrect: 0,
+            id: Date.now().toString(),
+        };
+        const stackname = getUrlParameter("stackid");
 
-    let stacks = getStacks();
+        let stacks = getStacks();
 
-    for (let i = 0; i < stacks.length; i++) {
-        if (stacks[i].stackname === stackname) {
-            stacks[i].cards.push(card);
-            break;
+for (let i = 0; i < stacks.length; i++) {
+            if (stacks[i].stackname === stackname) {
+                stacks[i].cards.push(card);
+                break;
+            }
         }
+        setStacks(stacks);
+        stacks = await serverSetStacks();
+        setStacks(stacks);
+        quillQuestion.setContents([{ insert: '\n' }]);
+        quillAnswer.setContents([{ insert: '\n' }]);
     }
-    setStacks(stacks);
-    stacks = await serverSetStacks();
-    setStacks(stacks);
-    quillQuestion.setContents([{ insert: '\n' }]);
-    quillAnswer.setContents([{ insert: '\n' }]);
+    catch (e) {
+        createModal('err', e.message);
+    }
 }

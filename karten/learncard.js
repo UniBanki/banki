@@ -1,6 +1,6 @@
 const backend_host = 'https://h2992036.stratoserver.net';
 var quillQuestion;
-var quillAnswer; 
+var quillAnswer;
 var stack;
 var card;
 
@@ -24,36 +24,34 @@ function screenSize() {
     }
 }
 
-function createContent(){
+function createContent() {
     quillQuestion = new Quill('#contentQuestion', {
         modules: {
-            toolbar: false 
-          },
-          theme: 'snow', 
-          readOnly: true
+            toolbar: false
+        },
+        theme: 'snow',
+        readOnly: true
     });
 
     quillAnswer = new Quill('#contentAnswer', {
         modules: {
-            toolbar: false 
-          },
-          theme: 'snow',
-          readOnly: true
+            toolbar: false
+        },
+        theme: 'snow',
+        readOnly: true
     });
 }
 
 
-function bodyLoad(){
-    
+function bodyLoad() {
+
     createContent();
-    const stackname = getUrlParameter("stackid"); 
+    const stackname = getUrlParameter("stackid");
 
-    const stacks = getStacks(); 
+    const stacks = getStacks();
 
-    for(let i = 0; i < stacks.length; i++)
-    {
-        if(stacks[i].stackname === stackname)
-        {
+    for (let i = 0; i < stacks.length; i++) {
+        if (stacks[i].stackname === stackname) {
             stack = stacks[i];
             break;
         }
@@ -61,21 +59,19 @@ function bodyLoad(){
     getCard();
 }
 
-function getCard(){
+function getCard() {
 
     quillAnswer.setContents([{ insert: '\n' }]);
     const button = document.getElementById("getAnswer");
     button.style.cssText += "display: inline-block;";
 
     let cards = stack.cards;
-    var front; 
+    var front;
     var back;
 
-    cards.sort((a,b) => 0.5 - Math.random());
-    for (let i = 0; i < cards.length; i++)
-    {
-        if(cards[i].numcorrect < 3)
-        {
+    cards.sort((a, b) => 0.5 - Math.random());
+    for (let i = 0; i < cards.length; i++) {
+        if (cards[i].numcorrect < 3) {
             card = cards[i];
             front = card.front;
             back = card.back;
@@ -85,25 +81,25 @@ function getCard(){
     }
 }
 
-function getAnswer(){
+function getAnswer() {
     quillAnswer.setContents(card.back);
     const button = document.getElementById("getAnswer");
     button.style.cssText += "display: none;";
 }
 
-function statisticsCard(result){
-    if (result == true){
-        for (let i = 0; i < stack.cards.length; i++){
-            if(stack.cards[i].id === card.id){
+function statisticsCard(result) {
+    if (result == true) {
+        for (let i = 0; i < stack.cards.length; i++) {
+            if (stack.cards[i].id === card.id) {
                 stack.cards[i].numcorrect++;
                 updateCard();
             }
         }
     }
 
-    if (result == false){
-        for (let i = 0; i < stack.cards.length; i++){
-            if(stack.cards[i].id === card.id){
+    if (result == false) {
+        for (let i = 0; i < stack.cards.length; i++) {
+            if (stack.cards[i].id === card.id) {
                 stack.cards[i].numcorrect = 0;
                 updateCard();
             }
@@ -111,22 +107,26 @@ function statisticsCard(result){
     }
 }
 
-async function updateCard(){
-    const stackname = getUrlParameter("stackid");
+async function updateCard() {
+    try {
+        const stackname = getUrlParameter("stackid");
 
-    let stacks = getStacks();
+        let stacks = getStacks();
 
-   for(let i = 0; i<stacks.length; i++){
-        if(stacks[i].stackname===stackname){
-           for(let j = 0; j < stacks[i].cards.length; j++){
-                if(stacks[i].cards[j].id === card.id){
-                    stacks[i].cards[j].numcorrect = card.numcorrect;
-                    break;
+        for (let i = 0; i < stacks.length; i++) {
+            if (stacks[i].stackname === stackname) {
+                for (let j = 0; j < stacks[i].cards.length; j++) {
+                    if (stacks[i].cards[j].id === card.id) {
+                        stacks[i].cards[j].numcorrect = card.numcorrect;
+                        break;
+                    }
                 }
-           }
+            }
         }
-    }    
-    setStacks(stacks);
-    stacks = await serverSetStacks();
-    setStacks(stacks);
+        setStacks(stacks);
+        stacks = await serverSetStacks();
+        setStacks(stacks);
+    } catch (e) {
+        createModal('err', e.message);
+    }
 }
