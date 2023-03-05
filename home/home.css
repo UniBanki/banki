@@ -19,11 +19,11 @@ img {
 
 #textblock{
     background-image: url("../res/weiss\ \(2\).png");
-    background-size:790px;
+    background-size:800px;
     background-position: center;
     background-repeat: no-repeat;
-    margin: -4em;
-    padding: 8em;
+    margin: -5em;
+    padding: 9em;
 }
 
 .content-style{
@@ -56,7 +56,7 @@ button:hover{
 }
 
 #logo_img{
-    width: 779px
+    width: 710px
 }
 
 #textblock{
@@ -67,4 +67,8 @@ p{
     padding-left: 16em;
     padding-right: 15em;
     padding-top: 5em;
+}
+
+.content-text{
+    margin: 2em;
 }
