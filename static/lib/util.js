@@ -35,14 +35,13 @@ async function serverGetStacks() {
 
         try {
             let response = await fetch(
-                `${backend_host}/api/stacks/get`,
+                `/api/stacks/get`,
                 options
             );
             response = await response.json();
             if (response.err) {
                 throw new Error(response.err);
             }
-
             resolve(response.stacks);
         } catch (e) {
             reject(e);
@@ -65,7 +64,7 @@ async function serverSetStacks() {
 
         try {
             let response = await fetch(
-                `${backend_host}/api/stacks/set`,
+                `/api/stacks/set`,
                 options
             );
             response = await response.json();
