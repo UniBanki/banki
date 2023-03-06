@@ -42,7 +42,7 @@ app.post("/api/stacks/get", async (req, res) => {
   try {
     await validateSession(sessionid);
     const stacks = await getStacks(sessionid);
-    res.status(200).send({stacks:stacks})
+    res.status(200).send({ stacks: stacks })
   }
   catch (e) {
     res.status(400).send({ err: e.message })
@@ -57,7 +57,7 @@ app.post("/api/stacks/set", async (req, res) => {
     await validateSession(sessionid);
     await setStacks(sessionid, stacks);
     stacks = await getStacks(sessionid);
-    res.status(200).send({stacks:stacks})
+    res.status(200).send({ stacks: stacks })
   }
   catch (e) {
     res.status(400).send({ err: e.message })
@@ -66,6 +66,22 @@ app.post("/api/stacks/set", async (req, res) => {
 
 app.get("/", (req, res) => {
   res.sendFile("home/home.html", { root: "static" });
+});
+
+app.get("/login", (req, res) => {
+  res.sendFile("login/login.html", { root: "static" });
+});
+
+app.get("/overview", (req, res) => {
+  res.sendFile("overview/overview.html", { root: "static" });
+});
+
+app.get("/create", (req, res) => {
+  res.sendFile("karten/createcard.html", { root: "static" });
+});
+
+app.get("/learn", (req, res) => {
+  res.sendFile("karten/learncard.html", { root: "static" });
 });
 
 //host static files with express

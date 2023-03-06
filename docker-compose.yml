@@ -9,5 +9,13 @@ services:
             MONGO_INITDB_DATABASE: banki
         ports:
             - 27017:27017
-        volumes:
-            - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    node:
+        image: banki-node:latest
+        container_name: node
+        restart: always
+        ports:
+            - 8080:8080
+        depends_on:
+            - mongodb
+        stdin_open: true
+        tty: true
