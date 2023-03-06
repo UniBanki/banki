@@ -13,7 +13,7 @@ function sessionidValid() {
             body: '{"sessionid":"' + getCookie('sessionid') + '"}'
         };
 
-        fetch(`${backend_host}/api/checkSessionid`, options)
+        fetch(`/api/checkSessionid`, options)
             .then(response => response.json())
             .then(function (response) {
                 if (response === true) {

@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb";
 
-const MONGO_URL = "mongodb://127.0.0.1:27017";
+const MONGO_URL = "mongodb://root:passwort@localhost:27017/?authSource=admin";
 
 export let dbo = await connectMongo();
 

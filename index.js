@@ -42,7 +42,7 @@ app.post("/api/stacks/get", async (req, res) => {
   try {
     await validateSession(sessionid);
     const stacks = await getStacks(sessionid);
-    res.status(200).send(stacks)
+    res.status(200).send({stacks:stacks})
   }
   catch (e) {
     res.status(400).send({ err: e.message })
@@ -57,25 +57,20 @@ app.post("/api/stacks/set", async (req, res) => {
     await validateSession(sessionid);
     await setStacks(sessionid, stacks);
     stacks = await getStacks(sessionid);
-    res.status(200).send(stacks)
+    res.status(200).send({stacks:stacks})
   }
   catch (e) {
     res.status(400).send({ err: e.message })
   }
 });
 
-const httpsServer = https.createServer(
-  {
-    key: readFileSync(
-      "/etc/letsencrypt/live/h2992036.stratoserver.net/privkey.pem"
-    ),
-    cert: readFileSync(
-      "/etc/letsencrypt/live/h2992036.stratoserver.net/fullchain.pem"
-    ),
-  },
-  app
-);
+app.get("/", (req, res) => {
+  res.sendFile("home/home.html", { root: "static" });
+});
 
-httpsServer.listen(443, () => {
-  console.log("Node running on port 443(https)");
+//host static files with express
+app.use(express.static("static"));
+
+app.listen(8080, () => {
+  console.log("Node running on port localhost:8080/");
 });

@@ -1,5 +1,3 @@
-const backend_host = 'https://h2992036.stratoserver.net'
-
 function getCookie(cookieName) {//ignores attributes from cookies, returns only the values
     let cookie = {};
     document.cookie.split(';').forEach(function (el) {
@@ -37,7 +35,7 @@ async function login(username, password) {
             headers: { 'Content-Type': 'application/json' },
             body: '{"username":"' + username + '","password":"' + password + '"}'
         };
-        let response = await fetch(`${backend_host}/api/login`, options);
+        let response = await fetch('/api/login', options);
         response = await response.json();
         if (response.err) {
             throw new Error(response.err);
@@ -62,7 +60,7 @@ async function register(username, password) {
             headers: { 'Content-Type': 'application/json' },
             body: '{"username":"' + username + '","password":"' + password + '"}'
         };
-        let response = awafetch(`${backend_host}/api/register`, options)
+        let response = await fetch(`/api/register`, options)
         response = await response.json();
         if (response.err) {
             throw new Error(response.err);
