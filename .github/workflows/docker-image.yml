@@ -30,9 +30,9 @@ jobs:
       runs-on: macos-latest
 
       steps:
-      - shell: bash
       - uses: actions/checkout@v3
       - name: Docker login
+        shell: bash
         env:
           DOCKER_USER: ${{secrets.DOCKER_USER}}
           DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
@@ -51,6 +51,7 @@ jobs:
     - shell: bash
     - uses: actions/checkout@v3
     - name: Docker login
+      shell: bash
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
