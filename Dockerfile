@@ -5,4 +5,4 @@ WORKDIR /app
 COPY node/ .
 
 RUN npm install
-CMD ["node", "."]
+CMD ["node", "index.js"]
