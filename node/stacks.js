@@ -3,12 +3,11 @@ import { dbo } from "./config.js";
 export async function getStacks(sessionid) {
   return new Promise(async function (resolve, reject) {
     try {
-      let res_stacks = {};
       const query = { sessionid:sessionid };
       const result = await dbo
         .collection("users")
         .findOne(query, { projection: { _id: 0, stacks: 1 } });
-      resolve(result.stacks);
+      resolve(result.stacks);//returns array of stacks
     } catch (e) {
       reject(e);
     }

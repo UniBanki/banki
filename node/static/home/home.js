@@ -1,24 +1,10 @@
-const backend_host = 'https://h2992036.stratoserver.net';
-
-
-
-function sessionidValid() {
-
+async function sessionidValid() {
     return new Promise(function (resolve, reject) {
-        const sessionid = getCookie("sessionid");
-
-        const options = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: '{"sessionid":"' + getCookie('sessionid') + '"}'
-        };
-
-        fetch(`/api/checkSessionid`, options)
-            .then(response => response.json())
+        fetch('/api/checkSessionid')
             .then(function (response) {
-                if (response === true) {
+                if(response.status===200){
                     resolve();
-                } else {
+                }else{
                     reject();
                 }
             })
@@ -26,8 +12,11 @@ function sessionidValid() {
     });
 }
 
-function gotoLogin() {
-    sessionidValid()
-        .then(window.open('/overview/overview.html', '_self'))
-        .catch(window.open('/login/login.html', '_self'))
+async function gotoLogin() {
+    try {
+        await sessionidValid();
+        window.open('/overview/overview.html', '_self')
+    } catch (error) {
+        window.open('/login/login.html', '_self')
+    }
 }

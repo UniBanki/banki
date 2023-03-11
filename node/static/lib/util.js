@@ -1,11 +1,3 @@
-function setSessionid(sessionid){
-    localStorage.setItem("sessionid", sessionid);
-}
-
-function getSessionid(){
-    return localStorage.getItem("sessionid")
-}
-
 function setStacks(stacks) {
     localStorage.setItem("stacks", JSON.stringify(stacks));
 }
@@ -27,22 +19,13 @@ function getStacks() {
 async function serverGetStacks() {
     //returns stacks from server
     return new Promise(async function (resolve, reject) {
-        const options = {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: '{"sessionid":"' + getSessionid() + '"}',
-        };
-
         try {
-            let response = await fetch(
-                `/api/stacks/get`,
-                options
-            );
+            let response = await fetch('/api/stacks/get');
             response = await response.json();
-            if (response.err) {
+            if (response.status===400) {
                 throw new Error(response.err);
             }
-            resolve(response.stacks);
+            resolve(response.stacks);//returns an array with stacks
         } catch (e) {
             reject(e);
         }
@@ -55,23 +38,18 @@ async function serverSetStacks() {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body:
-                '{"sessionid":"' +
-                getSessionid() +
-                '", "stacks":' +
+                '{"stacks":' +
                 JSON.stringify(getStacks()) +
                 "}",
         };
 
         try {
-            let response = await fetch(
-                `/api/stacks/set`,
-                options
-            );
+            let response = await fetch('/api/stacks/set', options);
             response = await response.json();
-            if (response.err) {
+            if (response.status===400) {
                 throw new Error(response.err);
             }
-            resolve(response.stacks);
+            resolve(response.stacks);//returns an array with stacks
         } catch (e) {
             reject(e);
         }
