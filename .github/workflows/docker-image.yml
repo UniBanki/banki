@@ -23,7 +23,7 @@ jobs:
     - name: Build Docker image 
       run: docker build . --file Dockerfile --tag deniskasak/banki:ubuntu
     - name: Push image
-      run: docker push ${{secrets.DOCKER_USER}}/banki
+      run: docker push ${{secrets.DOCKER_USER}}/banki:ubuntu
 
   RunOnMacOs:
 
@@ -40,7 +40,7 @@ jobs:
       - name: Build Docker image 
         run: docker build . --file Dockerfile --tag deniskasak/banki:macos
       - name: Push image
-        run: docker push ${{secrets.DOCKER_USER}}/banki
+        run: docker push ${{secrets.DOCKER_USER}}/banki:macos
   
   RunOnWindows:
 
@@ -57,4 +57,4 @@ jobs:
     - name: Build Docker image 
       run: docker build . --file Dockerfile --tag deniskasak/banki:windows
     - name: Push image
-      run: docker push ${{secrets.DOCKER_USER}}/banki
+      run: docker push ${{secrets.DOCKER_USER}}/banki:windows
