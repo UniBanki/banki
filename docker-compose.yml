@@ -2,7 +2,7 @@ version: "3"
 
 services:
     mongodb:
-        image: mongo:latest
+        image: mongo:6.0.4
         container_name: mongodb
         restart: always
         environment:
@@ -12,7 +12,7 @@ services:
         ports:
             - 27017:27017
     node:
-        image: banki-node:latest
+        image: deniskasak/banki:latest
         container_name: node
         restart: always
         ports:
@@ -21,3 +21,7 @@ services:
             - mongodb
         stdin_open: true
         tty: true
+        environment:
+            - MONGODB_IN_CONTAINER=1
+
+docker run -p 27017:27017/tcp -e MONGO_INITDB_ROOT_USERNAME=root -e MONGO_INITDB_ROOT_PASSWORD=passwort -e MONGO_INITDB_DATABASE=banki -d mongo:6.0.4

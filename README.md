@@ -1,16 +1,20 @@
 # Banki
 
+## Anleitung zum produktivem Deployment von Banki
+Voraussetzung: Docker ist installiert und Docker Agent läuft.
+Terminal im Ordner öffnen, wo Banki deployed werden soll:
+- git clone https://github.com/UniBanki/banki.git
+- cd banki
+- docker compose up --detach
+Auf Banki kann nun mit localhost:8080 zugegriffen werden.
+
 ## Anleitung zur Entwicklung mit Banki
-- config.js:
-<br/>-- mongodb:27017 zu localhost:27017 ändern (vor Pull Request wieder rückgängig machen)
-- im Hauptordner in Terminal ausführen:
-<br/>-- docker compose up --detach
-<br/>-- Das startet ein Docker compose mit node und MongoDB.
-<br/>-- In Docker Dashboard den Node Container stoppen.
-- um Node.js zu aktivieren, im Terminal:
-<br/>-- cd node
-<br/>-- node index.js
-- auf Startseite von Banki im Browser zugreifen mit folgender URL: localhost:8080
+Voraussetzung: Docker ist installiert und Docker Agent läuft.
+Terminal im Ordner öffnen, wo Banki deployed werden soll:
+- docker run -p 27017:27017/tcp -e MONGO_INITDB_ROOT_USERNAME=root -e MONGO_INITDB_ROOT_PASSWORD=passwort -e MONGO_INITDB_DATABASE=banki -d mongo:6.0.4
+- cd node
+- node index.js
+Auf Banki kann nun mit localhost:8080 zugegriffen werden.
 
 ## Backend API http://h2992036.stratoserver.net
 Im folgenden sind nur die erfolgreichen API-Responses beschrieben. Bei Fehlern werden Fehlernachrichten in Textform geschickt.
