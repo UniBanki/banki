@@ -8,7 +8,7 @@ on:
 
 jobs:
 
-  build:
+  RunOnUbuntu:
 
     runs-on: ubuntu-latest
 
@@ -21,6 +21,40 @@ jobs:
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Build Docker image 
-      run: docker build . --file Dockerfile --tag deniskasak/banki:latest
+      run: docker build . --file Dockerfile --tag deniskasak/banki:ubuntu
+    - name: Push image
+      run: docker push ${{secrets.DOCKER_USER}}/banki
+
+  RunOnMacOs:
+
+      runs-on: macos-latest
+
+      steps:
+      - uses: actions/checkout@v3
+      - name: Docker login
+        env:
+          DOCKER_USER: ${{secrets.DOCKER_USER}}
+          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+        run: |
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - name: Build Docker image 
+        run: docker build . --file Dockerfile --tag deniskasak/banki:macos
+      - name: Push image
+        run: docker push ${{secrets.DOCKER_USER}}/banki
+  
+  RunOnWindows:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Docker login
+      env:
+        DOCKER_USER: ${{secrets.DOCKER_USER}}
+        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+      run: |
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+    - name: Build Docker image 
+      run: docker build . --file Dockerfile --tag deniskasak/banki:windows
     - name: Push image
       run: docker push ${{secrets.DOCKER_USER}}/banki
