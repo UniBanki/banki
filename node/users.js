@@ -78,6 +78,7 @@ export async function createUser(username, password) {
       const newuser = { username: username, password: password, sessionid:"", stacks:[] };
 
       await dbo.collection("users").insertOne(newuser);
+      resolve();
     } catch (e) {
       reject(e);
     }

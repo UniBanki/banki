@@ -36,11 +36,10 @@ async function login(username, password) {
             body: '{"username":"' + username + '","password":"' + password + '"}'
         };
         let response = await fetch('/api/login', options);
-        response = await response.json();
-        if (response.err) {
+        if (response.status===400) {
+            response = await response.json();
             throw new Error(response.err);
         } else {
-            setSessionid(response.sessionid);
             window.open('/overview/overview.html', '_self');
         }
     } catch (err) {
@@ -52,8 +51,6 @@ async function login(username, password) {
 }
 
 async function register(username, password) {
-    
-
     try {
         const options = {
             method: 'POST',
@@ -61,11 +58,10 @@ async function register(username, password) {
             body: '{"username":"' + username + '","password":"' + password + '"}'
         };
         let response = await fetch(`/api/register`, options)
-        response = await response.json();
-        if (response.err) {
+        if (response.status===400) {
+            response = await response.json();
             throw new Error(response.err);
         } else {
-            setSessionid(response.sessionid);
             window.open('/overview/overview.html', '_self');
         }
     } catch (e) {
