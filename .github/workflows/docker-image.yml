@@ -12,6 +12,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      
       - name: Docker Login
         # You may pin to the exact commit or the version.
         # uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
@@ -20,43 +21,13 @@ jobs:
           username: ${{secrets.DOCKER_USER}}
           password: ${{secrets.DOCKER_PASSWORD}}
           ecr: auto
-      - name: Build Docker image
-        run: docker build . --file Dockerfile --tag deniskasak/banki:ubuntu
+          
+      - name: Build AMD64 image
+        run: docker build . --file Dockerfile --tag deniskasak/banki:ubuntu --platform amd64
       - name: Push image
-        run: docker push ${{secrets.DOCKER_USER}}/banki:ubuntu
-
-  RunOnMacOs:
-    runs-on: macos-latest
-
-    steps:
-      - uses: actions/checkout@v3
-      - name: Docker Login
-        # You may pin to the exact commit or the version.
-        # uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
-        uses: docker/login-action@v2.1.0
-        with:
-          username: ${{secrets.DOCKER_USER}}
-          password: ${{secrets.DOCKER_PASSWORD}}
-          ecr: auto
-      - name: Build Docker image
-        run: docker build . --file Dockerfile --tag deniskasak/banki:macos
+        run: docker push ${{secrets.DOCKER_USER}}/banki:amd64
+      
+      - name: Build ARM image
+        run: docker build . --file Dockerfile --tag deniskasak/banki:ubuntu --platform arm
       - name: Push image
-        run: docker push ${{secrets.DOCKER_USER}}/banki:macos
-
-  RunOnWindows:
-    runs-on: windows-latest
-
-    steps:
-      - uses: actions/checkout@v3
-      - name: Docker Login
-        # You may pin to the exact commit or the version.
-        # uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
-        uses: docker/login-action@v2.1.0
-        with:
-          username: ${{secrets.DOCKER_USER}}
-          password: ${{secrets.DOCKER_PASSWORD}}
-          ecr: auto
-      - name: Build Docker image
-        run: docker build . --file Dockerfile --tag deniskasak/banki:windows
-      - name: Push image
-        run: docker push ${{secrets.DOCKER_USER}}/banki:windows
+        run: docker push ${{secrets.DOCKER_USER}}/banki:arm
