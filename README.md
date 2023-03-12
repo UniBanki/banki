@@ -18,7 +18,6 @@ docker compose up -d
 
 ## Anleitung zur Entwicklung mit Banki
 Voraussetzung: Docker ist installiert und Docker Agent läuft.
-<br/>Terminal im Ordner öffnen, wo Banki deployed werden soll:
 ```bash
 git clone https://github.com/UniBanki/banki.git
 cd banki
