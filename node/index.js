@@ -108,6 +108,6 @@ app.get("/learn", (req, res) => {
 //host static files with express
 app.use(express.static("static"));
 
-app.listen(8080, () => {
-	console.log("Node running on port localhost:8080/");
+app.listen(80, () => {
+	console.log("Node running on port localhost:80");
 });
