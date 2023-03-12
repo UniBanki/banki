@@ -23,5 +23,5 @@ jobs:
       with:
         file: .
         # List of target platforms for build
-        platforms: windows/amd64, linux/amd64, linuxarm
+        platforms: windows/amd64, linux/amd64, linux/arm
         github-token: ${{ github.token }}
