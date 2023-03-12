@@ -1,4 +1,4 @@
-# Banki
+# Banki [![Build](https://github.com/UniBanki/banki/actions/workflows/docker-image.yml/badge.svg)](https://github.com/UniBanki/banki/actions/workflows/docker-image.yml)
 
 ## Anleitung zum produktivem Deployment von Banki
 Voraussetzung: Docker ist installiert und Docker Agent läuft.
