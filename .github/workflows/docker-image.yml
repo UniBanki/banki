@@ -22,12 +22,14 @@ jobs:
           password: ${{secrets.DOCKER_PASSWORD}}
           ecr: auto
           
+      - name: Build ARM image
+        run: docker build . --file Dockerfile --tag deniskasak/banki:arm --platform arm
+      - name: Push image
+        run: docker push ${{secrets.DOCKER_USER}}/banki:arm
+        
       - name: Build AMD64 image
         run: docker build . --file Dockerfile --tag deniskasak/banki:amd64 --platform amd64
       - name: Push image
         run: docker push ${{secrets.DOCKER_USER}}/banki:amd64
       
-      - name: Build ARM image
-        run: docker build . --file Dockerfile --tag deniskasak/banki:arm --platform arm
-      - name: Push image
-        run: docker push ${{secrets.DOCKER_USER}}/banki:arm
+
