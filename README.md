@@ -1,31 +1,44 @@
 # Banki [![Build](https://github.com/UniBanki/banki/actions/workflows/docker-image.yml/badge.svg)](https://github.com/UniBanki/banki/actions/workflows/docker-image.yml)
 
-## Anleitung zum produktivem Deployment von Banki
-Voraussetzung: Docker ist installiert und Docker Agent läuft.
-Terminal im Ordner öffnen, wo Banki deployed werden soll:
-- git clone https://github.com/UniBanki/banki.git
-- cd banki
-- docker compose up --detach
-Auf Banki kann nun mit localhost:8080 zugegriffen werden.
+## Produktives Deployment von Banki
+Voraussetzungen: Docker installiert, Docker Agent läuft, docker compose installiert
+Zusätzlich für Windows Nutzer: in Docker experimentelle Features erlauben
+```bash
+git clone https://github.com/UniBanki/banki.git
+cd banki
+docker compose up -d
+```
+Zugriff auf Banki über http://localhost
+## Updaten von Banki
+```bash
+docker compose stop
+docker compose pull   
+docker compose up -d
+```
 
 ## Anleitung zur Entwicklung mit Banki
 Voraussetzung: Docker ist installiert und Docker Agent läuft.
 Terminal im Ordner öffnen, wo Banki deployed werden soll:
-- docker run -p 27017:27017/tcp -e MONGO_INITDB_ROOT_USERNAME=root -e MONGO_INITDB_ROOT_PASSWORD=passwort -e MONGO_INITDB_DATABASE=banki -d mongo:6.0.4
-- cd node
-- node index.js
-Auf Banki kann nun mit localhost:8080 zugegriffen werden.
+```bash
+git clone https://github.com/UniBanki/banki.git
+cd banki
+docker run -p 27017:27017/tcp -e MONGO_INITDB_ROOT_USERNAME=root -e MONGO_INITDB_ROOT_PASSWORD=passwort -e MONGO_INITDB_DATABASE=banki -d mongo:6.0.4
+cd node
+npm install
+node index.js
+```
+Zugriff auf Banki über http://localhost
 
-## Backend API http://h2992036.stratoserver.net
+## Backend API
 Im folgenden sind nur die erfolgreichen API-Responses beschrieben. Bei Fehlern werden Fehlernachrichten in Textform geschickt.
 
 **/api/register** [POST]<br/>
 req: username, password<br/>
-res: sessionid<br/>
+res: 200
 
 **/api/login** [POST]<br/>
 req: username, password<br/>
-res: sessionid
+res: 200
 
 **/api/stacks/get** [POST]<br/>
 req: sessionid<br/>
