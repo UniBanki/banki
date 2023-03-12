@@ -2,7 +2,7 @@
 
 ## Produktives Deployment von Banki
 Voraussetzungen: Docker installiert, Docker Agent läuft, docker compose installiert
-Zusätzlich für Windows Nutzer: in Docker experimentelle Features erlauben
+<br/>Zusätzlich für Windows Nutzer: in Docker experimentelle Features erlauben
 ```bash
 git clone https://github.com/UniBanki/banki.git
 cd banki
@@ -18,7 +18,7 @@ docker compose up -d
 
 ## Anleitung zur Entwicklung mit Banki
 Voraussetzung: Docker ist installiert und Docker Agent läuft.
-Terminal im Ordner öffnen, wo Banki deployed werden soll:
+<br/>Terminal im Ordner öffnen, wo Banki deployed werden soll:
 ```bash
 git clone https://github.com/UniBanki/banki.git
 cd banki
@@ -40,7 +40,7 @@ res: 200
 req: username, password<br/>
 res: 200
 
-**/api/stacks/get** [POST]<br/>
+**/api/stacks/get** [GET]<br/>
 req: sessionid<br/>
 res: stacks
 
