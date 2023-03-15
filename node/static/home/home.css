@@ -63,12 +63,9 @@ button:hover{
     width: 60vw
 }
 
-p{
+#content-text{
+    margin: 2em;
     padding-left: 16em;
     padding-right: 15em;
     padding-top: 5em;
-}
-
-.content-text{
-    margin: 2em;
 }
