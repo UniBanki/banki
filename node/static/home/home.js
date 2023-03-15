@@ -1,11 +1,11 @@
 function screenSize() {
     console.info(`${screen.width} x ${screen.height}`);
-    const logo = document.getElementById("logo_cont");
-    const cloudImg = document.getElementById("textblock");
-    const cloudCont = document.getElementById("content_text");
-    const logoImg = document.getElementById("logo_img");
-    const linkCont = document.getElementById("links");
-    const buttonLog = document.getElementById("to_login");
+    let logo = document.getElementById("logo_cont");
+    let cloudImg = document.getElementById("textblock");
+    let cloudCont = document.getElementById("content_text");
+    let logoImg = document.getElementById("logo_img");
+    let linkCont = document.getElementById("links");
+    let buttonLog = document.getElementById("to_login");
 
     if (screen.width >= 375 && screen.width < 414) {
         logo.style.cssText += "max-width: 100%; padding-top: 6em; margin-left: 0em;";
